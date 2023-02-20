@@ -1,0 +1,11 @@
+conda create -n TopChoice python
+conda activate TopChoice
+conda install django
+pip install pillow
+pip install django-widget-tweaks
+pip install mysqlclient
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+mas aDELANT=PYTHON MANAGE.PY COLLECSTATIC
