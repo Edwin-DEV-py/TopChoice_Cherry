@@ -46,6 +46,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(max_length=200,unique=True,primary_key=True)
     phonenumber = models.CharField(max_length=10,unique=True)#instalar libreria
     addres = models.CharField(max_length=200,null=False)
+    #anadir la fecha de nacimiento
     employe_roll = models.BooleanField(default=False)
     
     #atributos de django
