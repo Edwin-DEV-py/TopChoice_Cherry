@@ -4,7 +4,7 @@ from django.urls import reverse
 class Category(models.Model):
     category_name = models.CharField(max_length=50,unique=True,primary_key=True)
     description = models.CharField(max_length=100,null=False)
-    category_image = models.ImageField(upload_to='images/categorys',blank=True)
+    category_image = models.ImageField(upload_to='images/categorys',blank=True)#quitar esta monda
     slug = models.CharField(max_length=100,unique=True)
     
     class Meta:
