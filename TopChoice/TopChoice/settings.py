@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'TopChoice.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'database__name',
-        'USER': 'user_name',
-        'PASSWORD': 'password',
-        'HOST': 'host_address',
-        'PORT': 'port',
+        'NAME': 'topchoice',
+        'USER': 'superadmin',
+        'PASSWORD': 'admin123',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
