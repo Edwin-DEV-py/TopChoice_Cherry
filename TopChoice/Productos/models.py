@@ -1,8 +1,8 @@
 from django.db import models
-from Categorias.models import Category
+from Categorias.models import Category,SubCategory
 from django.urls import reverse
 
-class Productos(models.Model):
+class Products(models.Model):
     product_id = models.IntegerField(unique=True,primary_key=True)
     product_name = models.CharField(max_length=50)
     slug = models.CharField(max_length=100,unique=True)
@@ -14,6 +14,7 @@ class Productos(models.Model):
     stock = models.IntegerField()
     is_available = models.BooleanField(default=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    subcategory = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     
