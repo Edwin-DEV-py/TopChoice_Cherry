@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class Manager_account(BaseUserManager):
-    def create_user(self,first_name,second_name,fisrt_last_name,last_name,email,phonenumber,addres,password=None):
+    def create_user(self,first_name,fisrt_last_name,last_name,email,phonenumber,addres,password=None):
         
         if not email:
             raise ValueError('El usuario debe registrarse con un correo')
@@ -10,7 +10,6 @@ class Manager_account(BaseUserManager):
         user = self.model(
             email = self.normalize_email(email),
             first_name = first_name,
-            second_name = second_name,
             fisrt_last_name = fisrt_last_name,
             last_name = last_name,
             phonenumber = phonenumber,
@@ -21,12 +20,15 @@ class Manager_account(BaseUserManager):
         user.save(using = self._db)
         return user
     
-    def create_superuser(self,first_name,last_name,email,password):
+    def create_superuser(self,first_name,fisrt_last_name,last_name,email,phonenumber,addres,password):
         
         user = self.create_user(
             email = self.normalize_email(email),
             first_name = first_name,
+            fisrt_last_name = fisrt_last_name,
             last_name = last_name,
+            phonenumber = phonenumber,
+            addres = addres,
         )
         
         user.set_password(password)
@@ -46,7 +48,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(max_length=200,unique=True,primary_key=True)
     phonenumber = models.CharField(max_length=10,unique=True)#instalar libreria
     addres = models.CharField(max_length=200,null=False)
-    date = models.DateField(auto_now=False)
+    date = models.DateField(auto_now=False,null=True)
     employe_roll = models.BooleanField(default=False)
     
     #atributos de django
