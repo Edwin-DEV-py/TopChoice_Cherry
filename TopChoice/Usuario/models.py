@@ -75,4 +75,25 @@ class User(AbstractBaseUser):
     
     def has_module_perms(self,add_label):
         return True
+
+departaments = [
+    
+]   
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address_1 = models.CharField(max_length=100,blank=True)
+    address_2 = models.CharField(max_length=100,blank=True)
+    departament = models.CharField(max_length=100,choices=departaments,blank=True)
+    city = models.CharField(max_length=100,blank=True)
+    zone = models.CharField(max_length=100,blank=True)
+    
+    def __str__(self):
+        return self.user.first_name
+    
+    def address(self):
+        return f'{self.city} {self.address_1} {self.address_2}'
+    
+    
+    
     

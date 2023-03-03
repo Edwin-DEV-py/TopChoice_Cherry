@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'Productos',
     'Usuario',
-    'Categorias'
+    'Categorias',
+    'Carrito',
+    'Ordenes_compra'
 ]
 
 MIDDLEWARE = [
