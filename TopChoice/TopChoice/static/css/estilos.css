@@ -1,0 +1,37 @@
+:root{
+    --color-barra:#ed2f9b;
+}
+
+.barra_busqueda{
+    border-radius: 50px;
+    border-color: var(--color-barra);
+}
+.span_busqueda{
+    color: white;
+    background: var(--color-barra);
+    cursor: pointer;
+}
+.btn_headers{
+    background:none;
+    border: none;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+.btn_headers svg{
+    color: var(--color-barra);
+    height: 25px;
+    width: 25px;
+}
+.bg_categorias{
+    background: var(--color-barra);
+}
+.btn_nav{
+    background: white;
+}
+ul li{
+    margin: 10px;
+}
+ul li a{
+    color: white !important;
+}
+
