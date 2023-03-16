@@ -21,3 +21,40 @@ h2{
     box-shadow: 0 20px 30px rgba(0,0,0,0.11),
     0 20px 30px rgba(57, 55, 60, 0.48);
 }
+
+.img_publicidad{
+    box-shadow: 0 10px 10px rgba(0,0,0,0.11),
+    0 10px 10px rgba(57, 55, 60, 0.48);
+    border-radius: 5px;
+}
+
+.card2:hover{
+    color: var(--color-barra);
+    transform:translateY(10px) scale(1.1) translateZ(0);
+    transition: 0.5s;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.11),
+    0 20px 30px rgba(57, 55, 60, 0.48);
+}
+
+.nav_pie{
+    align-items: flex-start;
+}
+
+.form_contacto{
+    align-items: flex-start;
+}
+
+.form_contacto button{
+    position: relative;
+    left: 10px;
+    background: #ed2f9b;
+    border: none;
+}
+
+.form_contacto button:hover{
+    background: #c41679;
+}
+
+.correo{
+    text-align: start;
+}
