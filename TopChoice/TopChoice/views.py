@@ -10,3 +10,8 @@ def header(request):
 
 def inventario(request):
     return render(request, 'inventario.html')
+def ejemplo(request):
+    return render(request,'ejemplo.html')
+
+def inicio_sesion(request):
+    return render(request,'inicio_sesion.html')
