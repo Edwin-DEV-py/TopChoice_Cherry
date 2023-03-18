@@ -21,5 +21,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.header, name="header")
+    path('',views.header, name="header"),
+    path('inventario.html', views.inventario ,name='inventario')
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -7,3 +7,6 @@ def header(request):
         'categorias':categorias,
     }
     return render(request,'index.html',context)
+
+def inventario(request):
+    return render(request, 'inventario.html')
