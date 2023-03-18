@@ -8,8 +8,6 @@ def header(request):
     }
     return render(request,'index.html',context)
 
-def inventario(request):
-    return render(request, 'inventario.html')
 def ejemplo(request):
     return render(request,'ejemplo.html')
 
