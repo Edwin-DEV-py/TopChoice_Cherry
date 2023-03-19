@@ -11,7 +11,7 @@
 <body>
     <div class="container-fluid py-5 text-center padre" style="margin-top: 2%;">
         <div class="img_sesion">
-            <img src="/TopChoice_Cherry/TopChoice/TopChoice/static/img/img_registro.svg" alt="" style="width: 1400px;">
+            <img src="{% static 'img/img_registro.svg' %}" alt="" style="width: 1400px;">
         </div>
         <div class="formulario">
             <div class="container-fluid  text-center caja" style="max-width:600px">
@@ -62,7 +62,7 @@
                 </div>
                 <!--Falta anadir el checkbox-->
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="/TopChoice_Cherry/TopChoice/templates/inicio_sesion.html">Tienes una cuenta?</a>
+                    <a href="{% url 'inicio_sesion' %}">Tienes una cuenta?</a>
                 </div>        
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary btn1" id="btn1">Registrate</button>
@@ -71,7 +71,7 @@
                 <br>
             </div>
             <div class="row pantalla_movil">
-                <img src="/TopChoice_Cherry/TopChoice/TopChoice/static/img/img_maquillaje.svg" alt="">
+                <img src="{% static 'img/img_maquillaje.svg' %}" alt="">
             </div>
         </div>    
     </div>
