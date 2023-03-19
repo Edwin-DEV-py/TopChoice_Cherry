@@ -25,8 +25,8 @@ class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     payment = models.ForeignKey(Payment,on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phonenumber = models.CharField(max_length=50)
+    first_last_name = models.CharField(max_length=50)
+    phonenumber = models.CharField(max_length=10)
     email = models.CharField(max_length=50)
     addres_1 = models.CharField(max_length=100)
     addres_2 = models.CharField(max_length=100)
@@ -42,7 +42,7 @@ class Order(models.Model):
     upload_date = models.DateTimeField(auto_now=True)
     
     def name(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.first_name} {self.first_last_name}'
     
     def full_address(self):
         return f'{self.city} {self.addres_1} {self.addres_2}'

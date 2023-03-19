@@ -47,7 +47,7 @@ h2{
 .form_contacto button{
     position: relative;
     left: 10px;
-    background: #ed2f9b;
+    background: var(--color-barra);
     border: none;
 }
 
