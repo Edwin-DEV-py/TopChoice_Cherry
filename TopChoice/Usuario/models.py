@@ -49,6 +49,7 @@ class User(AbstractBaseUser):
     phonenumber = models.CharField(max_length=10,unique=True)#instalar libreria
     addres = models.CharField(max_length=200,null=False)
     date = models.DateField(auto_now=False,null=True)
+    accept = models.BooleanField(default=False)
     employe_roll = models.BooleanField(default=False)
     
     #atributos de django
