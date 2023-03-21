@@ -20,7 +20,7 @@ body{
 }
 
 .caja{
-    background: linear-gradient(to bottom right,#f5a3d8,#e3aaf3);
+    background: linear-gradient(to bottom right,#ed2f9b,#bf7ed1);
     box-shadow: 0 15px 24px rgba(0,0,0,0.11),
             0 15px 24px rgba(60, 58, 62, 0.48);  
             border-radius: 10px; 

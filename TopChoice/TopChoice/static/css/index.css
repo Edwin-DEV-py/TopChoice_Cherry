@@ -88,7 +88,7 @@ h2{
     height: 200px;
     transform-origin: center;
     transform-style: preserve-3d;
-    transform: rotateY(calc(var(--i)*45deg)) translateZ(400px);
+    transform: rotateY(calc(var(--i)*72deg)) translateZ(400px);
 }
 
 .box span img{
