@@ -1,0 +1,22 @@
+{% extends 'index.html'%}
+{%load static %}
+{% block content %}
+<div class="titulo row titulo">
+    <h3 style="color: #c41679;">CATEGORÍA/SUBCATEGORÍA</h3>
+    <div class="row">
+        <div class="col producto_centrado">
+            <div class="card bg-light" style="width: 15rem;">
+                <img src="{% static 'img/ejem.jpg' %}" class="card-img-top" alt="..." style="height:20rem;">
+                <div class="card-body text-center">
+                    <p class="card-text ">Marca</p>
+                    <h5 class="card-title">Nombre</h5>
+                    <p class="card-text">$precio</p>
+                </div>
+            <div class='card-footer text-center'>
+                <a href="#" class="boton btn btn-success">Ver producto</a>
+            </div>
+        </div>      
+    </div>
+</div>
+
+{% endblock %}
