@@ -24,6 +24,7 @@ urlpatterns = [
     path('',views.header, name="header"),
     path('ejemplo.html',views.ejemplo,name="ejemplo"),
     path('inicio_sesion.html',views.inicio_sesion,name="inicio_sesion"),
-    path('registro.html',views.registro,name="registro")
+    path('registro.html',views.registro,name="registro"),
+    path('store/',include('Productos.urls')),
     #aqui colocar la etiqueta include para usar las urls de las otras apps.
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
