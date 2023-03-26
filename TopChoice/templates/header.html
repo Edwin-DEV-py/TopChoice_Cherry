@@ -45,9 +45,9 @@
                       </button>
                       <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav nav justify-content-center">
-                        {% for categorias in categorias %}
+                        {% for Categorias in links %}
                           <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">{{ categorias.category_name }}</a>
+                            <a class="nav-link active" aria-current="page" href="{{ Categorias.get_url }}">{{ Categorias.category_name }}</a>
                           </li>
                         {% endfor %}
                         </ul>

@@ -19,7 +19,9 @@
                 <div class="card-body">
                     
                     <ul class="list-menu">
-                        
+                        {% for Categorias in links %}
+                            <a href="{{ Categorias.get_url }}" style="color:Black !important;"><li class="" style="color:Black !important;">{{ Categorias.category_name }}</li></a>
+                        {% endfor %}
                     </ul>
     
                 </div> <!-- card-body.// -->
@@ -117,12 +119,12 @@
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     
-                    <img src="{{ products.product_image_stock.url }}" style="max-width: 220px;">
+                    <a href="{{ products.get_url }}"><img src="{{ products.product_image_stock.url }}" style="max-width: 220px;"></a>
                     
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
-                        <a href="" class="title">{{ products.product_name }}</a>
+                        <a href="{{ products.get_url }}" class="title">{{ products.product_name }}</a>
                         <div class="price-wrap mt-2">
                             <span class="price">${{ products.price }}</span>
                         </div> <!-- price-wrap.// -->

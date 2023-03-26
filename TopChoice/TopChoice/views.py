@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from Categorias.models import Category
+from Categorias.models import Category, SubCategory
 
 def header(request):
     categorias = Category.objects.all()
