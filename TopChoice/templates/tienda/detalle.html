@@ -58,8 +58,12 @@
                     </div>
                 </div>
                 <hr>
-            <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
-            </div> 
+                {% if product_information.stock <= 0 %}
+                  <h5>Producto no disponible</h5>
+                {% else %}
+                  <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+                {% endif %}
+              </div> 
         </div>
     </div>
 </div>

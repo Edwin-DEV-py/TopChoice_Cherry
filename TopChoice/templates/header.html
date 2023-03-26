@@ -3,9 +3,11 @@
     <div class="container-fluid p-4 text-center">
         <div class="row">
             <div class="col">
-                Logo
+              <a href="{% url 'header' %}">
+                <img src="{% static 'img/logo.jpg' %}" alt="" class="img-fluid mx-auto d-block" style="max-height: 80px;">
+              </a>
             </div>
-            <div class="col" style="color:white;">
+            <div class="col row align-items-center" style="color:white;">
                 <form class="container-fluid">
                     <div class="input-group">
                       <input type="text" class="form-control barra_busqueda" placeholder="Busca tu producto favorito" aria-label="Username" aria-describedby="basic-addon1">
@@ -17,7 +19,7 @@
                     </div>
                   </form>
             </div>
-            <div class="col justify-content-end" style="color:white;">
+            <div class="col align-items-center justify-content-end" style="color:white;">
                 <button class="btn_headers">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
                         <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
@@ -45,6 +47,9 @@
                       </button>
                       <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav nav justify-content-center">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'store' %}">Tienda</a>
+                          </li>
                         {% for Categorias in links %}
                           <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ Categorias.get_url }}">{{ Categorias.category_name }}</a>

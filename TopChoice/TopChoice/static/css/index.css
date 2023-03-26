@@ -4,6 +4,11 @@
 h2{
     color: var(--color-barra);
 }
+
+html{
+    overflow-x: hidden;
+}
+
 .producto_centrado{
     display: flex;
     align-items: center;

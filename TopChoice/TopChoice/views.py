@@ -16,3 +16,6 @@ def inicio_sesion(request):
 
 def registro(request):
     return render(request,'registro.html')
+
+def inventario(request):
+    return render(request,'inventario.html')

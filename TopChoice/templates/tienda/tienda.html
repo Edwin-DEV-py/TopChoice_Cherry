@@ -1,4 +1,9 @@
 {% extends 'index.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/tienda.css' %}">
+    <title>Tienda</title>
+{% endblock %}
 {% block content %}
 {% include 'header.html' %}
 <section class="section-content padding-y">
@@ -6,7 +11,8 @@
     
     <div class="row">
         <aside class="col-md-3">
-            
+    
+    <!--Filtros de busqueda-->
     <div class="card">
         <article class="filter-group">
             <header class="card-header">
@@ -24,40 +30,9 @@
                         {% endfor %}
                     </ul>
     
-                </div> <!-- card-body.// -->
+                </div> 
             </div>
-        </article> <!-- filter-group  .// -->
-        <article class="filter-group">
-            <header class="card-header">
-                <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-                    <i class="icon-control fa fa-chevron-down"></i>
-                    <h6 class="title">Sizes </h6>
-                </a>
-            </header>
-            <div class="filter-content collapse show" id="collapse_4" style="">
-                <div class="card-body">
-                  <label class="checkbox-btn">
-                    <input type="checkbox">
-                    <span class="btn btn-light"> XS </span>
-                  </label>
-    
-                  <label class="checkbox-btn">
-                    <input type="checkbox">
-                    <span class="btn btn-light"> SM </span>
-                  </label>
-    
-                  <label class="checkbox-btn">
-                    <input type="checkbox">
-                    <span class="btn btn-light"> LG </span>
-                  </label>
-    
-                  <label class="checkbox-btn">
-                    <input type="checkbox">
-                    <span class="btn btn-light"> XXL </span>
-                  </label>
-            </div><!-- card-body.// -->
-            </div>
-        </article> <!-- filter-group .// -->
+        </article>
         
         <article class="filter-group">
             <header class="card-header">
@@ -66,13 +41,12 @@
                     <h6 class="title">Price range </h6>
                 </a>
             </header>
-            <div class="filter-content collapse show" id="collapse_3" style="">
+            <div class="filter-content collapse show" id="collapse_3" >
                 <div class="card-body">
                     
                     <div class="form-row">
                     <div class="form-group col-md-6">
                       <label>Min</label>
-                      <!-- <input class="form-control" placeholder="$0" type="number"> -->
                           <select class="mr-2 form-control">
                             <option value="0">$0</option>
                             <option value="50">$50</option>
@@ -95,46 +69,47 @@
                             <option value="2000">$2000+</option>
                         </select>
                     </div>
-                    </div> <!-- form-row.// -->
+                    </div> 
                     <button class="btn btn-block btn-primary">Apply</button>
-                </div><!-- card-body.// -->
+                </div>
             </div>
-        </article> <!-- filter-group .// -->
+        </article>
         
-    </div> <!-- card.// -->
+    </div>
     
-        </aside> <!-- col.// -->
-        <main class="col-md-9">
+    </aside>
+    <main class="col-md-9">
     
     <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
                 <span class="mr-md-auto">{{ count }} productos encontrados</span>
                 
             </div>
-    </header><!-- sect-heading -->
+    </header>
     
+    <!--Ciclo para mostrar los productos en la tienda-->
     <div class="row">
         {% for products in products %}
         <div class="col-md-4">
-            <figure class="card card-product-grid">
+            <figure class="card3 text-center">
                 <div class="img-wrap"> 
                     
                     <a href="{{ products.get_url }}"><img src="{{ products.product_image_stock.url }}" style="max-width: 220px;"></a>
                     
-                </div> <!-- img-wrap.// -->
+                </div> 
                 <figcaption class="info-wrap">
                     <div class="fix-height">
                         <a href="{{ products.get_url }}" class="title">{{ products.product_name }}</a>
                         <div class="price-wrap mt-2">
                             <span class="price">${{ products.price }}</span>
-                        </div> <!-- price-wrap.// -->
+                        </div>
                     </div>
                     <a href="#" class="btn btn-block btn-success">Added to cart</a>
                 </figcaption>
             </figure>
-        </div> <!-- col.// -->
+        </div>
         {% endfor %}
-    </div> <!-- row end.// -->
+    </div>
     
     
     <nav class="mt-4" aria-label="Page navigation sample">
@@ -147,10 +122,10 @@
       </ul>
     </nav>
     
-        </main> <!-- col.// -->
+    </main>
     
     </div>
     
-    </div> <!-- container .//  -->
-    </section>
+    </div>
+</section>
 {% endblock %}
