@@ -28,8 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# Applicaciones de Django
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +44,8 @@ INSTALLED_APPS = [
     'Ordenes_compra'
 ]
 
+
+#Plugins para hacer una funcion especifica
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,8 +56,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#rama principal donde se accede para usar los urls
 ROOT_URLCONF = 'TopChoice.urls'
 
+#donde Django accede a los HTMLs
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -80,6 +83,7 @@ WSGI_APPLICATION = 'TopChoice.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#DB para el aplicativo
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -126,13 +130,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+#ruta para acceder a los componetes estaticos como css,js y img
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
     'TopChoice/static'
 ]
 
-
+#ruta para redireccionar las imagenes introducidas y donde se van a leer
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
 
@@ -141,4 +146,5 @@ MEDIA_ROOT = BASE_DIR /'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#modelo de usuario del aplicativo
 AUTH_USER_MODEL = 'Usuario.User'

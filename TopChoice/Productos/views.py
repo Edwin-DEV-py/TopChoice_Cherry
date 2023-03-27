@@ -2,6 +2,8 @@ from django.shortcuts import render,get_object_or_404
 from .models import *
 from Categorias.models import Category
 
+
+#muestra los productos ya sea todos o filtrados, con una paginacion para evitar sobrecargar la DB
 def store(request, category_slug=None):
     
     categorys = None
@@ -23,7 +25,7 @@ def store(request, category_slug=None):
     
     return render(request,"tienda/tienda.html",context)
 
-
+#redirige al usuario a la pagina del producto en detalle
 def product_information(request,category_slug,product_slug):
     #validamos que el producto exista
     try:

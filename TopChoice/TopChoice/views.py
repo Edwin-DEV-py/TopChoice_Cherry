@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from Categorias.models import Category, SubCategory
 
+#vista para la pagina principal
 def header(request):
     categorias = Category.objects.all()
     context = {

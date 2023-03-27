@@ -2,6 +2,8 @@ from django.db import models
 from Categorias.models import Category,SubCategory
 from django.urls import reverse
 
+
+#modelo de los productos
 class Products(models.Model):
     product_id = models.AutoField(unique=True,primary_key=True)
     product_name = models.CharField(max_length=50)
@@ -18,7 +20,7 @@ class Products(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     
-    def get_url(self):
+    def get_url(self): #devuelve una url para poder ver el detalle mas adelante
         return reverse('product_information',args=[self.category.slug,self.slug])
     
     def __str__(self):
