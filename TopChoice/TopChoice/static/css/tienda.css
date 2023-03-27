@@ -1,3 +1,25 @@
 .card3:hover{
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(-10px);
+    background: #fff;
+}
+
+
+.card3 a{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.card3 .price{
+    color: red;
+}
+
+.card3 .btn{
+    background: none;
+    border-color: #B225D9;
+}
+
+.card3 .btn:hover{
+    background: #B225D9;
 }

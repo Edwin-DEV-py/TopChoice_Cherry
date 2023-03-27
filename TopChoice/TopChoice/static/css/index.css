@@ -114,3 +114,7 @@ html{
     box-shadow: 0 10px 15px rgba(0,0,0,0.11),
     0 10px 15px rgba(57, 55, 60, 0.48);
 }
+
+.body_modal{
+    background: var(--color-barra) !important;
+}

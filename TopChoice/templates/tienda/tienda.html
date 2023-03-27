@@ -13,7 +13,7 @@
         <aside class="col-md-3">
     
     <!--Filtros de busqueda-->
-    <div class="card">
+    <div class="card4">
         <article class="filter-group">
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
@@ -91,22 +91,21 @@
     <div class="row">
         {% for products in products %}
         <div class="col-md-4">
-            <figure class="card3 text-center">
+            <div class="card3 text-center">
                 <div class="img-wrap"> 
                     
                     <a href="{{ products.get_url }}"><img src="{{ products.product_image_stock.url }}" style="max-width: 220px;"></a>
                     
                 </div> 
-                <figcaption class="info-wrap">
                     <div class="fix-height">
                         <a href="{{ products.get_url }}" class="title">{{ products.product_name }}</a>
                         <div class="price-wrap mt-2">
                             <span class="price">${{ products.price }}</span>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-block btn-success">Added to cart</a>
-                </figcaption>
-            </figure>
+                    <a href="{{ products.get_url }}" class="btn btn-block btn-success">Ver producto</a>
+                    <br>
+                </div>
         </div>
         {% endfor %}
     </div>
@@ -128,4 +127,5 @@
     
     </div>
 </section>
+{% include 'footer.html' %}
 {% endblock %}
