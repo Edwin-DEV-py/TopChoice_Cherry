@@ -23,3 +23,21 @@
 .card3 .btn:hover{
     background: #B225D9;
 }
+
+.title{
+    color: black;
+    font-weight: bold;
+}
+
+.titulo{
+    text-decoration: none !important;
+}
+
+.categoria{
+    text-decoration: none;
+    color: #FBA1BB;
+}
+
+.boton_tienda{
+    background: #D94179;
+}

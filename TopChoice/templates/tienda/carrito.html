@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block head%}
-    <link rel="stylesheet" href="{% static 'css/detalle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/carrito.css' %}">
     <title>Mi Carrito</title>
 {% endblock %}
 {% block content %}
@@ -17,18 +17,19 @@
     <div class="card5">
     <table class="table table-borderless table-shopping-cart">
     <thead class="text-muted">
-    <tr class="small text-uppercase">
-      <th scope="col">Product</th>
-      <th scope="col" width="120">Cantidad</th>
+    <tr class="small text-uppercase tabla_head">
+      <th scope="col">Producto</th>
       <th scope="col" width="120">Precio</th>
-      <th scope="col" class="text-right" width="200"> </th>
+      <th scope="col" width="120">Cantidad</th>
+      <th scope="col" width="120"> Total </th>
+      <th scope="col" class="text-right" width="200">  </th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td>
             <figure class="itemside align-items-center">
-                <div class="aside"><img src="./images/items/11.jpg" class="img-sm"></div>
+                <div class="aside"><p>img</p></div>
                 <figcaption class="info">
                     <a href="#" class="title text-dark">Camera Canon EOS M50 Kit</a>
                     <p class="text-muted small">Matrix: 25 Mpx <br> Marca: Canon</p>
@@ -52,11 +53,11 @@
         <td> 
             <div class="price-wrap"> 
                 <var class="price">$1156.00</var> 
-                <small class="text-muted"> $315.20 cada uno </small> 
+                <small class="text-muted"> $315.20 und </small> 
             </div>
         </td>
         <td class="text-right"> 
-        <a href="" class="btn btn-danger"> Eliminar</a>
+        <a href="#" class="btn btn-danger"> Eliminar</a>
         </td>
     </tr>
     </tbody>
@@ -69,11 +70,11 @@
             <div class="card5">
             <div class="card-body">
                 <dl class="dlist-align">
-                  <dt>Total price:</dt>
+                  <dt>Subtotal:</dt>
                   <dd class="text-right">$69.97</dd>
                 </dl>
                 <dl class="dlist-align">
-                  <dt>Tax:</dt>
+                  <dt>Iva:</dt>
                   <dd class="text-right"> $10.00</dd>
                 </dl>
                 <dl class="dlist-align">
@@ -81,11 +82,8 @@
                   <dd class="text-right text-dark b"><strong>$59.97</strong></dd>
                 </dl>
                 <hr>
-                <p class="text-center mb-3">
-                    <img src="./images/misc/payments.png" height="26">
-                </p>
-                <a href="./place-order.html" class="btn btn-primary btn-block"> Pagar </a>
-                <a href="./store.html" class="btn btn-light btn-block">Continua comprando</a>
+                <a href="./tienda.html" class="btn btn-light btn-block">Elegir mas productos</a>
+                <a href="./place-order.html" class="btn btn-primary btn-block boton_pagar"> Pagar </a>
             </div>
             </div>
     

@@ -16,7 +16,7 @@
     <div class="card4">
         <article class="filter-group">
             <header class="card-header">
-                <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="titulo">
                     <i class="icon-control fa fa-chevron-down"></i>
                     <h6 class="title">Categories</h6>
                 </a>
@@ -26,7 +26,7 @@
                     
                     <ul class="list-menu">
                         {% for Categorias in links %}
-                            <a href="{{ Categorias.get_url }}" style="color:Black !important;"><li class="" style="color:Black !important;">{{ Categorias.category_name }}</li></a>
+                            <a href="{{ Categorias.get_url }}" class="categoria"><li style="color:Black !important;">{{ Categorias.category_name }}</li></a>
                         {% endfor %}
                     </ul>
     
@@ -36,7 +36,7 @@
         
         <article class="filter-group">
             <header class="card-header">
-                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="titulo">
                     <i class="icon-control fa fa-chevron-down"></i>
                     <h6 class="title">Price range </h6>
                 </a>
@@ -103,7 +103,7 @@
                             <span class="price">${{ products.price }}</span>
                         </div>
                     </div>
-                    <a href="{{ products.get_url }}" class="btn btn-block btn-success">Ver producto</a>
+                    <a href="{{ products.get_url }}" class="btn btn-block btn-success boton_tienda">Ver producto</a>
                     <br>
                 </div>
         </div>
