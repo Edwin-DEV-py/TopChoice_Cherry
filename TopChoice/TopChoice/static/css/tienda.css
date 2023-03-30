@@ -1,6 +1,19 @@
-.card3:hover{
+.posicion:hover{
     transform: scale(1.1) translateY(-10px);
     background: #fff;
+}
+
+.posicion{
+    position: relative;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.card3{
+    margin: 20px;
+    padding: 10px;
 }
 
 
@@ -15,13 +28,19 @@
     color: red;
 }
 
-.card3 .btn{
+.botones .btn{
+    border-radius: 50px;
     background: none;
-    border-color: #B225D9;
+    border-color: #E37DAF;
+    position: sticky;
 }
 
-.card3 .btn:hover{
-    background: #B225D9;
+.botones a{
+    color: black;
+}
+
+.botones .btn:hover{
+    background: #E37DAF;
 }
 
 .title{
@@ -39,5 +58,14 @@
 }
 
 .boton_tienda{
-    background: #D94179;
+    background: #E37DAF;
+}
+
+.price{
+    color: rgb(170, 204, 203) !important;
+}
+
+.botones{
+    position: absolute;
+    bottom: 0;
 }

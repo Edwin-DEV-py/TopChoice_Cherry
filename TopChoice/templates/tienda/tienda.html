@@ -18,7 +18,7 @@
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="titulo">
                     <i class="icon-control fa fa-chevron-down"></i>
-                    <h6 class="title">Categories</h6>
+                    <h6 class="title" style="color:#E37DAF !important;">Categories</h6>
                 </a>
             </header>
             <div class="filter-content collapse show" id="collapse_1">
@@ -26,7 +26,7 @@
                     
                     <ul class="list-menu">
                         {% for Categorias in links %}
-                            <a href="{{ Categorias.get_url }}" class="categoria"><li style="color:Black !important;">{{ Categorias.category_name }}</li></a>
+                            <a href="{{ Categorias.get_url }}" class="categoria"><li style="color:#E37DAF !important;">{{ Categorias.category_name }}</li></a>
                         {% endfor %}
                     </ul>
     
@@ -38,7 +38,7 @@
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="titulo">
                     <i class="icon-control fa fa-chevron-down"></i>
-                    <h6 class="title">Price range </h6>
+                    <h6 class="title" style="color:#E37DAF !important;">Price range </h6>
                 </a>
             </header>
             <div class="filter-content collapse show" id="collapse_3" >
@@ -90,7 +90,7 @@
     <!--Ciclo para mostrar los productos en la tienda-->
     <div class="row">
         {% for products in products %}
-        <div class="col-md-4">
+        <div class="col-md-4 posicion text-center">
             <div class="card3 text-center">
                 <div class="img-wrap"> 
                     
@@ -103,9 +103,11 @@
                             <span class="price">${{ products.price }}</span>
                         </div>
                     </div>
-                    <a href="{{ products.get_url }}" class="btn btn-block btn-success boton_tienda">Ver producto</a>
                     <br>
-                </div>
+            </div>
+            <div class="col text-center botones">
+                <a href="{{ products.get_url }}" class="btn btn-block btn-success boton_tienda">Ver producto</a>
+            </div>
         </div>
         {% endfor %}
     </div>
