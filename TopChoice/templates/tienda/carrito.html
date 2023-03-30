@@ -19,23 +19,27 @@
     <thead class="text-muted">
     <tr class="small text-uppercase tabla_head">
       <th scope="col">Producto</th>
-      <th scope="col" width="120">Precio</th>
+      <th scope="col">Informacion</th>
       <th scope="col" width="120">Cantidad</th>
-      <th scope="col" width="120"> Total </th>
+      <th scope="col" width="120">Precio</th>
+      <th scope="col" width="120">SubTotal</th>
       <th scope="col" class="text-right" width="200">  </th>
     </tr>
     </thead>
     <tbody>
-        
+    
+        {% for items in items %}
     <tr>
         <td>
             <figure class="itemside align-items-center">
-                <div class="aside"><p>img</p></div>
-                <figcaption class="info">
-                    <a href="#" class="title text-dark">Camera Canon EOS M50 Kit</a>
-                    <p class="text-muted small">Matrix: 25 Mpx <br> Marca: Canon</p>
-                </figcaption>
+                <div class="aside"><img src="{{ items.product.product_image_stock.url }}" style="max-height: 120px;" class="img-sm"></div>
             </figure>
+        </td>
+        <td>
+            <figcaption class="info">
+                <a href="" class="title text-dark">{{items.product.product_name}}</a>
+                <p class="text-muted small">Matrix: 25 Mpx</p>
+            </figcaption>
         </td>
         <td> 
             
@@ -44,7 +48,7 @@
                                 <div class="input-group-prepend">
                                 <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
                                 </div>
-                                <input type="text" class="form-control"  value="1">
+                                <input type="text" class="form-control"  value="{{ items.quantity }}">
                                 <div class="input-group-append">
                                 <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
                                 </div>
@@ -53,15 +57,19 @@
         </td>
         <td> 
             <div class="price-wrap"> 
-                <var class="price">$1156.00</var> 
-                <small class="text-muted"> $315.20 und </small> 
+                <small class="text-muted"> ${{items.product.price}} und </small> 
+            </div>
+        </td>
+        <td> 
+            <div class="price-wrap"> 
+                <var class="price">${{items.sub_total}}</var> 
             </div>
         </td>
         <td class="text-right"> 
         <a href="#" class="btn btn-danger"> Eliminar</a>
         </td>
     </tr>
-    
+    {% endfor %}
     </tbody>
     </table>
     </div>
@@ -73,15 +81,15 @@
             <div class="card-body">
                 <dl class="dlist-align">
                   <dt>Subtotal:</dt>
-                  <dd class="text-right">$69.97</dd>
+                  <dd class="text-right">${{ total }}</dd>
                 </dl>
                 <dl class="dlist-align">
                   <dt>Iva:</dt>
-                  <dd class="text-right"> $10.00</dd>
+                  <dd class="text-right"> ${{ iva }}</dd>
                 </dl>
                 <dl class="dlist-align">
                   <dt>Total:</dt>
-                  <dd class="text-right text-dark b"><strong>$59.97</strong></dd>
+                  <dd class="text-right text-dark b"><strong>${{ final }}</strong></dd>
                 </dl>
                 <hr>
                 <a href="./tienda.html" class="btn btn-light btn-block">Elegir mas productos</a>
