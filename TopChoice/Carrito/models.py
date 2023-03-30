@@ -4,7 +4,7 @@ from Usuario.models import *
 
 #modelo que representa al carrito de compra
 class Cart(models.Model):
-    cart_id = models.AutoField(unique=True,primary_key=True)
+    cart_id = models.CharField(max_length=250,blank=True,primary_key=True)
     date_added = models.DateTimeField(auto_now_add=True)
     
     #el metodo str le indica a Django que imprimir cuando se necesita imprimir una isntancia de un modelo

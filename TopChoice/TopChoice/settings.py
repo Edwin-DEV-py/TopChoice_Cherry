@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'TopChoice.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'topchoice_ecomerce',
+        'NAME': 'topchoice',
         'USER': 'admin',
         'PASSWORD': 'admin123',
         'HOST': '127.0.0.1',
