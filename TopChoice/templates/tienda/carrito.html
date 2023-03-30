@@ -32,7 +32,7 @@
     <tr>
         <td>
             <figure class="itemside align-items-center">
-                <div class="aside"><img src="{{ items.product.product_image_stock.url }}" style="max-height: 120px;" class="img-sm"></div>
+                <div class="aside"><img src="{{ items.product.product_image_stock.url }}" style="max-height: 120px;" class="img-sm" alt="Responsive image"></div>
             </figure>
         </td>
         <td>
@@ -46,11 +46,11 @@
                         <div class="col"> 
                             <div class="input-group input-spinner">
                                 <div class="input-group-prepend">
-                                <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
+                                <a href="{% url 'remove' items.product.product_id %}" class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </a>
                                 </div>
                                 <input type="text" class="form-control"  value="{{ items.quantity }}">
                                 <div class="input-group-append">
-                                <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
+                                <a href="{% url 'add' items.product.product_id %}" class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </a>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
             </div>
         </td>
         <td class="text-right"> 
-        <a href="#" class="btn btn-danger"> Eliminar</a>
+        <a href="{% url 'delete' items.product.product_id %}" class="btn btn-danger"> Eliminar</a>
         </td>
     </tr>
     {% endfor %}
