@@ -8,7 +8,7 @@
 {% include 'header.html' %}
 <div class="container text-center py-5">
   <!--Aqui se muestra la informacion del producto-->
-    <div class="caja bg-light">
+    <div class="caja">
         <div class="row">
             <div class="col-sm col-md-4 imagen_producto">
                 <img src="{{ product_information.product_image_stock.url }}" alt="" class="img-fluid rounded-start">
@@ -73,7 +73,7 @@
                     {% if product_information.category%}
                     {% for product in product%}
                     <div class="col producto_centrado">
-                      <div class="card bg-light card2" style="width: 10rem;">
+                      <div class="card card2" style="width: 10rem;">
                         <a href="{{ product.get_url }}"><img src="{{ product.product_image_stock.url }}" class="card-img-top" alt="..." style="max-height:15rem;"></a>
                           <div class="card-body">
                               <h5 class="card-title">{{ product.product_name }}</h5>
@@ -91,7 +91,7 @@
                     {% if product_information.category%}
                     {% for product2 in product2%}
                     <div class="col producto_centrado">
-                      <div class="card bg-light card2" style="width: 10rem;">
+                      <div class="card card2" style="width: 10rem;">
                         <a href="{{ product.get_url }}"><img src="{{ product2.product_image_stock.url }}" class="card-img-top" alt="..." style="max-height:15rem;"></a>
                           <div class="card-body">
                               <h5 class="card-title">{{ product2.product_name }}</h5>
