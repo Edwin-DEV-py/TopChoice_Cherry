@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from .models import *
 from Categorias.models import Category
-
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 #muestra los productos ya sea todos o filtrados, con una paginacion para evitar sobrecargar la DB
 def store(request, category_slug=None):
@@ -13,13 +13,19 @@ def store(request, category_slug=None):
     if category_slug != None:
         categorys = get_object_or_404(Category,slug=category_slug)
         products = Products.objects.filter(category=categorys,is_available=True)
+        pagination = Paginator(products,12)
+        page = request.GET.get('page')
+        page_x_products = pagination.get_page(page)
         count = products.count()
     else:      
         products = Products.objects.all().filter(is_available=True)
+        pagination = Paginator(products,12)
+        page = request.GET.get('page')
+        page_x_products = pagination.get_page(page)
         count = products.count()
         
     context = {
-        'products':products,
+        'products':page_x_products,
         'count':count,
         'categorys':categorys
     }
