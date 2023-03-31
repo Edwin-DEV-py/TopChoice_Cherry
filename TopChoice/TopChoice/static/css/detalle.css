@@ -1,7 +1,57 @@
 .informacion{
     text-align: start;
+    max-width: 40%;
+    position: relative;
 }
-.caja{
-    border: 1px solid black;
+
+.informacion h2{
+    text-align: center;
+}
+
+.informacion .boton_comprar{
+    position: absolute;
+    bottom: 0px;
+    background: #E37DAF;
+    border-color: #E37DAF;
     border-radius: 10px;
+}
+
+.boton_comprar:hover{
+    background: #DA406E;
+    border-color: #DA406E;
+}
+
+
+.imagen_producto{
+    align-self: center;
+    border: 1px solid rgb(219, 214, 214);
+    border-radius: 10px;
+    max-width: 300px;
+    height: 420px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin: 10px;
+}
+
+.imagen_producto img{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.title{
+    color: black ;
+}
+
+.precio{
+    text-align: center;
+}
+
+.price{
+    color: #DA406E;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.ref{
+    color: rgb(198, 200, 202);
 }
