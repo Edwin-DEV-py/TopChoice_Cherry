@@ -21,6 +21,7 @@ def store(request, category_slug=None):
     context = {
         'products':products,
         'count':count,
+        'categorys':categorys
     }
     
     return render(request,"tienda/tienda.html",context)

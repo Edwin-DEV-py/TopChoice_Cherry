@@ -6,6 +6,94 @@
 {% endblock %}
 {% block content %}
 {% include 'header.html' %}
+{% if categorys.category_name == "Bebes" %}
+<br>
+<div class="container banner_categoria bg-light">
+    <div class="row">
+        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/bebe1.jpg' %}" class="img-fluid rounded" alt="Responsive image">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="text-center">
+                <h3>Productos de Bebes</h3>
+                <p style="text-align: justify;">Nuestra tienda entrega productos certificados JPMA CPSC ASTM. Accesorios Para Bebé, Coches, Ropa Accesorios Para Bebé Y Mucho Mas. compra en linea evnvios. Encuentra lo que necesitas para tu bebe.</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row text-center">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/bebe2.jpg' %}" class="img-fluid rounded" alt="Responsive image" style="max-height: 200px;">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/bebe3.jpg' %}" class="img-fluid rounded" alt="Responsive image" style="max-height: 200px;">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/carriola.png' %}" class="img-fluid rounded" alt="Responsive image" style="max-height: 200px;">
+        </div>
+    </div>
+</div>
+{% endif%}
+{% if categorys.category_name == "Capilar" %}
+<br>
+<div class="container banner_categoria bg-light">
+    <div class="row">
+        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/cabello2.jpg' %}" class="img-fluid rounded" alt="Responsive image">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="text-center">
+                <h3>Productos Capialres</h3>
+                <p style="text-align: justify;">Hidrata, restaura y estiliza tu cabello con las mejores marcas para el cuidado del cabello.</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row text-center">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/cabello1.jpg' %}" class="img-fluid rounded" alt="Responsive image" style="max-height: 200px;">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/cabello3.jpeg' %}" class="img-fluid rounded" alt="Responsive image" style="max-height: 200px;">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/cabello4.jpg' %}" class="img-fluid rounded" alt="Responsive image" style="max-height: 200px;">
+        </div>
+    </div>
+</div>
+{% endif%}
+{% if categorys.category_name == "Fragancias" %}
+<br>
+<div class="container banner_categoria bg-light">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/perfumes.webp' %}" class="img-fluid rounded" alt="Responsive image">
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+            <div class="text-center">
+                <h3>Fragancias</h3>
+                <p style="text-align: justify;">Las fragancias son mezclas químicas que tienen olor o aroma, sin embargo, abarcan otras esferas mucho más amplias, con valor cultural, histórico, social, económico y emocional.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif%}
+{% if categorys.category_name == "Cuidado de la piel" %}
+<br>
+<div class="container banner_categoria bg-light">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <img src="{% static 'img/piel.webp' %}" class="img-fluid rounded" alt="Responsive image">
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+            <div class="text-center">
+                <h3>Cuidado de la piel</h3>
+                <p style="text-align: justify;">¿No tienes tiempo para el cuidado intensivo de la piel? Todavía puedes mimarte siguiendo los conceptos básicos. Un buen cuidado de la piel y elegir un estilo de vida saludable pueden ayudarte a retrasar el envejecimiento natural y prevenir diversos problemas de la piel. Encuentra aqui todos los productos para cuidar tu piel.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif%}
 <section class="section-content padding-y">
     <div class="container py-5">
     
