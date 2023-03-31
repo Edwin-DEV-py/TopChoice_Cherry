@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from .models import *
 from Categorias.models import Category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
 
 #muestra los productos ya sea todos o filtrados, con una paginacion para evitar sobrecargar la DB
 def store(request, category_slug=None):
@@ -12,13 +13,13 @@ def store(request, category_slug=None):
     #validamos que los poroductos sean desplegados en una categoria o esten mezclados
     if category_slug != None:
         categorys = get_object_or_404(Category,slug=category_slug)
-        products = Products.objects.filter(category=categorys,is_available=True)
+        products = Products.objects.filter(category=categorys,is_available=True).order_by('product_name')#aqui tambien podria ser por id
         pagination = Paginator(products,12)
         page = request.GET.get('page')
         page_x_products = pagination.get_page(page)
         count = products.count()
     else:      
-        products = Products.objects.all().filter(is_available=True)
+        products = Products.objects.all().filter(is_available=True).order_by('product_name')#aqui tambien podria ser por id
         pagination = Paginator(products,12)
         page = request.GET.get('page')
         page_x_products = pagination.get_page(page)
@@ -52,3 +53,21 @@ def product_information(request,category_slug,product_slug):
     }
     
     return render(request,'tienda/detalle.html',context)
+
+#funcion para la barra de busqueda
+def search(request):
+    
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        #obtenemos el conjunto de productos que coincidan con lo escrito
+        if keyword:
+            products = Products.objects.order_by('product_name').filter(Q(description__icontains=keyword) | Q(product_name__icontains=keyword))#aqui esta el query, la | es un OR
+            count = products.count()
+            
+    context = {
+        'products':products,
+        'count':count
+    }
+    
+    return render(request, 'tienda/tienda.html',context)
+    

@@ -275,6 +275,7 @@
     
     <!--Ciclo para mostrar los productos en la tienda-->
     <div class="row">
+        {% if products %}
         {% for products in products %}
         <div class="col-md-4 posicion text-center">
             <div class="card3 text-center">
@@ -296,9 +297,14 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="col-md-4">
+            <h2>No hay productos para mostrar</h2>
+        </div>
+        {% endif %}
     </div>
     
-    
+    <!--Paginacion-->
     <nav class="mt-4" aria-label="Page navigation sample">
         {% if products.has_other_pages %}
         <ul class="pagination">
