@@ -27,6 +27,11 @@ def store(request, category_slug=None):
 
 #redirige al usuario a la pagina del producto en detalle
 def product_information(request,category_slug,product_slug):
+    
+    category = get_object_or_404(Category,slug=category_slug)
+    product = Products.objects.filter(category=category,is_available=True)[:4]
+    product2 = Products.objects.filter(category=category,is_available=True)[4:8]
+    
     #validamos que el producto exista
     try:
         product_information = Products.objects.get(category__slug=category_slug, slug=product_slug)#las dos __ es una nomenclatura que obtiene el valor del campo de una estructura 
@@ -35,6 +40,8 @@ def product_information(request,category_slug,product_slug):
     
     context = {
         'product_information':product_information,
+        'product':product,
+        'product2':product2
     }
     
     return render(request,'tienda/detalle.html',context)

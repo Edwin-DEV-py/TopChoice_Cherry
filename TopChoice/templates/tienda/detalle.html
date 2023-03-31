@@ -7,6 +7,7 @@
 {% block content %}
 {% include 'header.html' %}
 <div class="container text-center py-5">
+  <!--Aqui se muestra la informacion del producto-->
     <div class="caja bg-light">
         <div class="row">
             <div class="col-sm col-md-4 imagen_producto">
@@ -52,6 +53,69 @@
               </div> 
         </div>
     </div>
+    <br>
+    <br>
+    <br>
 </div>
+    <!--Aqui se muestra los productos relacionados-->
+    <div class="container-flex text-center">
+      <h2>Productos relacionados</h2>
+      <div class="row titulo">
+        <div class="row">
+          <div id="carouselExampleIndicators2" class="carousel slide">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="container-fluid">
+                  <div class="row">
+                    {% if product_information.category%}
+                    {% for product in product%}
+                    <div class="col producto_centrado">
+                      <div class="card bg-light card2" style="width: 10rem;">
+                        <a href="{{ product.get_url }}"><img src="{{ product.product_image_stock.url }}" class="card-img-top" alt="..." style="max-height:15rem;"></a>
+                          <div class="card-body">
+                              <h5 class="card-title">{{ product.product_name }}</h5>
+                          </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="container-fluid">
+                  <div class="row">
+                    {% if product_information.category%}
+                    {% for product2 in product2%}
+                    <div class="col producto_centrado">
+                      <div class="card bg-light card2" style="width: 10rem;">
+                        <a href="{{ product.get_url }}"><img src="{{ product2.product_image_stock.url }}" class="card-img-top" alt="..." style="max-height:15rem;"></a>
+                          <div class="card-body">
+                              <h5 class="card-title">{{ product2.product_name }}</h5>
+                          </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev" style="filter:invert(100%) ;">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next" style="filter:invert(100%) ;">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 {% include 'footer.html' %}
 {% endblock %}
