@@ -67,20 +67,21 @@
     <div class="modal fade modal_sesion" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content body_modal">
-          <div class="modal-header header_sesion">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Inicio de Sesion</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
           <div class="modal-body body_sesion">
             <form class="row g-3">
               <div class="text-center">
+                <h1 class="modal-title fs-5 titulo_sesion" id="exampleModalLabel">Inicio de Sesion</h1>
                   <div class="col-md-12">
-                      <input type="email" class="form-control bg-transparent border-0" placeholder="Email">
+                      <input type="email" class="form-control bg-transparent border-0 input1" placeholder="Correo">
                   </div>
                       <br>
                   <div class="col-md-12">
-                      <input type="password" class="form-control bg-transparent border-0" placeholder="Password">
+                      <input type="password" class="form-control bg-transparent border-0 input1" placeholder="Contrasena">
                   </div>
+                  <br>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn1" id="btn1">INGRESAR</button>
+                </div>
               </div>
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                   <a href="#">Has olvidado tu contrasena?</a>
@@ -88,9 +89,6 @@
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                   <a href="{% url 'registro' %}" id="boton_registro">No tienes cuenta? registrate</a>
               </div>     
-              <div class="col-12">
-                  <button type="submit" class="btn btn-primary btn1" id="btn1">Accede</button>
-              </div>
               </form>
           </div>
         </div>

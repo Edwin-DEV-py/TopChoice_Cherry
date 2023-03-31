@@ -30,11 +30,11 @@ body{
 
 .caja input{
     border-radius: 0 !important;
-    border-bottom: 2px solid #B225D9 !important;
+    border-bottom: 0px;
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
-    background: none;
+    background: transparent;
 }
 
 .btn1{
