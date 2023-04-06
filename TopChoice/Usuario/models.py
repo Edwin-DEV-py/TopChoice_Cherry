@@ -2,16 +2,15 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class Manager_account(BaseUserManager):
-    def create_user(self,first_name,fisrt_last_name,second_last_name,email,phonenumber,addres,password=None):
+    def create_user(self,name,email,id,phonenumber,addres,password=None):
         
         if not email:
             raise ValueError('El usuario debe registrarse con un correo')
         
         user = self.model(
             email = self.normalize_email(email),
-            first_name = first_name,
-            fisrt_last_name = fisrt_last_name,
-            second_last_name = second_last_name,
+            name = name,
+            id=id,
             phonenumber = phonenumber,
             addres = addres,
         )
@@ -20,13 +19,12 @@ class Manager_account(BaseUserManager):
         user.save(using = self._db)
         return user
     
-    def create_superuser(self,first_name,fisrt_last_name,second_last_name,email,phonenumber,addres,password):
+    def create_superuser(self,name,email,id,phonenumber,addres,password):
         
         user = self.create_user(
             email = self.normalize_email(email),
-            first_name = first_name,
-            fisrt_last_name = fisrt_last_name,
-            second_last_name = second_last_name,
+            name = name,
+            id=id,
             phonenumber = phonenumber,
             addres = addres,
         )
@@ -41,13 +39,11 @@ class Manager_account(BaseUserManager):
         
 class User(AbstractBaseUser):
     
-    first_name = models.CharField(max_length=30,null=False,blank=False)
-    second_name = models.CharField(max_length=30,null=True)
-    fisrt_last_name = models.CharField(max_length=30,null=False,blank=False)
-    second_last_name = models.CharField(max_length=30,null=False,blank=False)
+    name = models.CharField(max_length=255,null=False,blank=False)
     email = models.EmailField(max_length=200,unique=True,primary_key=True)
     phonenumber = models.CharField(max_length=10,unique=True)#instalar libreria
-    addres = models.CharField(max_length=200,null=False)
+    addres = models.CharField(max_length=255,null=False)
+    id = models.IntegerField(unique=True)
     date = models.DateField(auto_now=False,null=True)
     accept = models.BooleanField(default=False)
     employe_roll = models.BooleanField(default=False)
@@ -59,11 +55,11 @@ class User(AbstractBaseUser):
     #roles de django
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_superadmin = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name','fisrt_last_name','second_last_name','phonenumber','addres']
+    REQUIRED_FIELDS = ['name','id','phonenumber','addres']
     
     objects = Manager_account() #instanciamos la clase
     
