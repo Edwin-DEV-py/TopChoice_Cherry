@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import *
+from django.contrib import messages
 
 # Create your views here.
 
@@ -19,6 +20,9 @@ def register(request):
             user = User.objects.create_user(name=name,email=email,id=id,addres=addres,phonenumber=phonenumber,password=password)
             user.date = date
             user.save()
+            
+            messages.success(request, 'Usuario registrado correctamente')
+            return redirect('header')
     
     context = {
         'form':form
