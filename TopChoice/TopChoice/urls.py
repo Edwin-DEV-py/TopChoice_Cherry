@@ -22,11 +22,9 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.header, name="header"),
-    path('ejemplo.html',views.ejemplo,name="ejemplo"),
-    path('inicio_sesion.html',views.inicio_sesion,name="inicio_sesion"),
-    path('registro.html',views.registro,name="registro"),
     path('store/',include('Productos.urls')),
     path('shopping_cart/',include('Carrito.urls')),
-    path('inventario.html',views.inventario,name="inventario")
+    path('inventario.html',views.inventario,name="inventario"),
+    path('user/',include('Usuario.urls'))
     #aqui colocar la etiqueta include para usar las urls de las otras apps.
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
