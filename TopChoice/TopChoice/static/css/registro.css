@@ -1,21 +1,18 @@
 body{
-    background: #f7e3f3;
+    background: #eb98c0;
 }
 
-.img_sesion{
-    position: fixed;
-    left: 400px;
-    bottom: 0px;
-    height: 100%;
-    z-index: -1;
+a{
+    color: white;
 }
 
 .caja{
     background: linear-gradient(#f8b6dc,#f5a7da); 
             border-radius: 10px; 
-    position: fixed;
-    top: 180px;  
-    left: 1100px;
+
+    max-width: 800px ;
+    max-height: 600px;
+
 }
 
 .caja input{
@@ -47,56 +44,45 @@ body{
     display: none;
 }
 
-@media screen and (max-width:1800px) {
-    .img_sesion{
-        left: 50px;
+.div_padre{
+    width: 100%;
+    height: 100vh;
+    margin-left: 0;
+    display: flex;
+}
+
+.div_img{
+    width: 40%;
+    background-image: url('../img/registro.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.div_form{
+    width: 60%;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+@media screen and (max-width:1700px){
+    .div_img{
+        width: 50%;
     }
-    .caja{
-        left: 750px;
+
+    .div_form{
+        width: 50%;
     }
 }
 
-@media screen and (max-width:1440px) {
-    .img_sesion img{
-        width: 1000px;
-        height: 700px;
-        left: 0px;
-    }
-    .caja{
-        width: 350px;
-        top: 220px;
-        left: 700px;
-    }
-    .img_sesion{
-        top: 100px;
-        left: 0px;
-    }
-}
-
-@media screen and (max-width:1200px){
-    .img_sesion{
+@media screen and (max-width:1000px){
+    .div_img{
         display: none;
-    }
-    .padre{
-        align-items: center;
-        justify-content: center;
-    }
-    .formulario{
-        align-items: center;
-        justify-content: center;
-    }
-    .caja{
-        position: relative;
-        left: 0px;
-        top: 0px;
+    }   
+    .div_form{
+        width: 100%;
     }
 }
 
-@media screen and (max-width:750px){
-    .pantalla_movil{
-        display: block;
-        position: fixed;
-        bottom: 0px;
-        z-index: -1;
-    }
-}
+

@@ -5,70 +5,56 @@
     <title>Registro de usuario</title>
 {% endblock %}
 {% block content %}
-    <div class="container-fluid py-5 text-center padre" style="margin-top: 2%;">
-        <div class="img_sesion">
-            <img src="{% static 'img/img_registro.svg' %}" alt="" style="width: 1400px;">
-        </div>
-        <div class="formulario">
-            <div class="container-fluid  text-center caja" style="max-width:600px">
-                <h1>Registro</h1>
-                <form class="row g-3">
-                <div class="text-center">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control bg-transparent border-0" placeholder="Nombre">
-                        </div>
-                            <br>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control bg-transparent border-0" placeholder="Segundo Nombre">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control bg-transparent border-0" placeholder="Primer apellido">
-                        </div>
-                            <br>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control bg-transparent border-0" placeholder="Segundo apellido">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="email" class="form-control bg-transparent border-0" placeholder="Email">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="text" class="form-control bg-transparent border-0" placeholder="Direccion">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control bg-transparent border-0" placeholder="Numero">
-                        </div>
-                            <br>
-                        <div class="col-md-6">
-                            <input type="date" class="form-control bg-transparent border-0" placeholder="Fecha">
-                        </div>
-                    </div>
-                </div>
-                <!--Falta anadir el checkbox-->
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{% url 'inicio_sesion' %}">Tienes una cuenta?</a>
-                </div>        
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn1" id="btn1">Registrate</button>
-                </div>
-                </form>
-                <br>
-            </div>
-            <div class="row pantalla_movil">
-                <img src="{% static 'img/img_maquillaje.svg' %}" alt="">
-            </div>
-        </div>    
+<div class="div_padre">
+    <div class="div_img">
+        
     </div>
+    <div class="div_form container d-flex justify-content-center text-center">
+        <div class="formulario container-fluid caja">
+            <h1>Registro</h1>
+            <form class="row g-3">
+            <div class="text-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" class="form-control bg-transparent border-0" placeholder="Nombre">
+                    </div>
+                        <br>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="email" class="form-control bg-transparent border-0" placeholder="Email">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" class="form-control bg-transparent border-0" placeholder="Identificacion">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" class="form-control bg-transparent border-0" placeholder="Direccion">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control bg-transparent border-0" placeholder="Numero">
+                    </div>
+                        <br>
+                    <div class="col-md-6">
+                        <input type="date" class="form-control bg-transparent border-0" placeholder="Fecha">
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{% url 'header' %}">Tienes una cuenta?</a>
+            </div>        
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary btn1" id="btn1">Registrate</button>
+            </div>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>  
 {% endblock %}
