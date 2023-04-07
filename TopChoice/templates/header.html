@@ -71,15 +71,16 @@
       <div class="modal-dialog">
         <div class="modal-content body_modal">
           <div class="modal-body body_sesion">
-            <form class="row g-3">
+            <form class="row g-3" action="{% url 'login' %}" method="POST">
+              {% csrf_token %}
               <div class="text-center">
                 <h1 class="modal-title fs-5 titulo_sesion" id="exampleModalLabel">Inicio de Sesion</h1>
                   <div class="col-md-12">
-                      <input type="email" class="form-control bg-transparent border-0 input1" placeholder="Correo">
+                      <input type="email" class="form-control bg-transparent border-0 input1" placeholder="Correo" name="email">
                   </div>
                       <br>
                   <div class="col-md-12">
-                      <input type="password" class="form-control bg-transparent border-0 input1" placeholder="Contrasena">
+                      <input type="password" class="form-control bg-transparent border-0 input1" placeholder="Contrasena" name="password">
                   </div>
                   <br>
                   <div class="col-12">

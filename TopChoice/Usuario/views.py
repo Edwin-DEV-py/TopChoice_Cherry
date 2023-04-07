@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .forms import *
-from django.contrib import messages
+from django.contrib import messages,auth
 
 # Create your views here.
 
@@ -28,3 +28,20 @@ def register(request):
         'form':form
     }
     return render(request,'user/registro.html',context)
+
+
+def login(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        
+        user = auth.authenticate(email=email,password=password)
+        
+        if user is not None:
+            auth.login(request, user)
+            
+            return redirect('header')
+        
+        else:
+            messages.error(request, 'Usuario invalido')
+    return render()
