@@ -48,7 +48,13 @@
                 {% if product_information.stock <= 0 %}
                   <h5>Producto no disponible</h5>
                 {% else %}
-                  <a href="{% url 'add' product_information.product_id %}" class="btn  btn-primary boton_comprar"> <span class="text">Agregar al Carrito</span> <i class="fas fa-shopping-cart"></i>  </a>
+                  {% if cart %}
+                  <br>
+                  <h4 href="#" class=""> <span class="text">Producto agregado</span></h4>
+                  <a href="{% url 'shopping_cart' %}" class="btn boton_comprar"> <span class="text">Ir al carrito</span> <i class="fas fa-shopping-cart"></i></a>
+                  {% else %}
+                    <a href="{% url 'add' product_information.product_id %}" class="btn  btn-primary boton_comprar"> <span class="text">Agregar al Carrito</span> <i class="fas fa-shopping-cart"></i>  </a>
+                  {% endif %}
                 {% endif %}
               </div> 
         </div>

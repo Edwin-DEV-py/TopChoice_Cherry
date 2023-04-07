@@ -3,6 +3,16 @@
 {% block head%}
     <link rel="stylesheet" href="{% static 'css/carrito.css' %}">
     <title>Mi Carrito</title>
+    <style>
+        .boton_tienda{
+            background: #E37DAF;
+            border-color: #E37DAF;
+        }
+        .boton_tienda:hover{
+            background: #E37DAF;
+            border-color: #E37DAF;
+        }
+    </style>
 {% endblock %}
 {% block content %}
 {% include 'header.html' %}
@@ -11,7 +21,13 @@
     <div class="container">
     
 
-    
+    {% if not items %}
+        <div class="text-center">
+            <h2>No hay productos aun</h2>
+            <br>
+            <a href="{% url 'store' %}" class="btn boton_tienda">Continua comprando</a>
+        </div>
+    {% else %}
     <div class="row">
         <aside class="col-lg-9">
     <div class="card5">
@@ -101,8 +117,9 @@
     
     
     </div>
+    {% endif %}
     
     </div>
     </section>
-<!---->>
+<!---->
 {% endblock %}

@@ -27,8 +27,8 @@
 }
 .btn_headers svg{
     color: var(--color-barra);
-    height: 25px;
-    width: 25px;
+    height: 35px;
+    width: 35px;
 }
 .bg_categorias{
     background: #DA406E;
@@ -41,5 +41,16 @@ ul li{
 }
 ul li a{
     color: white !important;
+}
+
+.span_carrito{
+    text-decoration: none;
+    color: #DA406E;
+}
+
+.span_carrito span{
+    position: relative;
+    right: 30px;
+    top: 5px;
 }
 

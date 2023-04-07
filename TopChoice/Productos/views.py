@@ -1,5 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from .models import *
+from Carrito.models import *
+from Carrito.views import _cart_id
 from Categorias.models import Category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
@@ -43,13 +45,15 @@ def product_information(request,category_slug,product_slug):
     #validamos que el producto exista
     try:
         product_information = Products.objects.get(category__slug=category_slug, slug=product_slug)#las dos __ es una nomenclatura que obtiene el valor del campo de una estructura 
+        cart = Cart_item.objects.filter(cart__cart_id=_cart_id(request),product=product_information).exists()#validamos que el prodcuto este en el carrito y el exists devuelve true o false
     except Exception as e:
         raise e
     
     context = {
         'product_information':product_information,
         'product':product,
-        'product2':product2
+        'product2':product2,
+        'cart':cart
     }
     
     return render(request,'tienda/detalle.html',context)
