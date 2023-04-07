@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import *
 from django.contrib import messages,auth
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -44,4 +45,10 @@ def login(request):
         
         else:
             messages.error(request, 'Usuario invalido')
-    return render()
+
+@login_required(login_url = 'login')
+def logout(request):
+    auth.logout(request)
+    messages.success(request, 'Saliste exitosamente')
+    
+    return redirect('header')
