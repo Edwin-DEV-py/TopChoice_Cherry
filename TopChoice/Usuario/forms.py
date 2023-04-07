@@ -1,5 +1,6 @@
 from django import forms
 from .models import User
+from django.core.exceptions import ValidationError
 
 class RegisterForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={
@@ -33,15 +34,23 @@ class RegisterForm(forms.ModelForm):
         'type':'date'
     }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder':'Contrasena',
+        'placeholder':'Contraseña',
         'class':'form-control bg-transparent border-0',
-        'type':'password'
     }))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder':'Confirmar contrasena',
+        'placeholder':'Confirmar contraseña',
         'class':'form-control bg-transparent border-0',
-        'type':'password'
     }))
     class Meta:
         model = User
         fields = ['name','email','id','phonenumber','addres','date','password']
+        
+    def clean(self):
+        cleaned_data = super(RegisterForm, self).clean() #accedemos a los datos del form
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+        
+        if password != confirm_password:
+            raise ValidationError("Las contraseñas no coinciden")
+        
+        return cleaned_data
