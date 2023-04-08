@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head%}
+    <title>Restaurar</title>
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+<div class="mx-auto" style="max-width: 380px; margin-top:100px; border: 1px solid rgb(214, 213, 213); padding: 20px; border-radius: 10px;">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="card-body text-center">
+        <h4 class="card-title mb-4">Restablecer Contrasena</h4>
+        <form action="{% url 'restart_password' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Nueva contrasena" name="password" >
+            </div> <!-- form-group// -->
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Repite la contrasena" name="confirm_password" >
+            </div> <!-- form-group// -->
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Restablecer</button>
+            </div> <!-- form-group// -->
+
+        </form>
+        </div> <!-- card-body.// -->
+</div>
+{% endblock %}

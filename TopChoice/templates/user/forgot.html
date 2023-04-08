@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head%}
+    <title>Recuperar</title>
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+<div class="mx-auto" style="max-width: 380px; margin-top:100px; border: 1px solid rgb(214, 213, 213); padding: 20px; border-radius: 10px;">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="card-body text-center">
+        <h4 class="card-title mb-4">Recuperar Contrasena</h4>
+        <form action="{% url 'forgot' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" name="email" >
+            </div> <!-- form-group// -->
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Enviar  </button>
+            </div> <!-- form-group// -->
+
+        </form>
+        </div> <!-- card-body.// -->
+</div>
+{% endblock %}

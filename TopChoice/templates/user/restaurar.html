@@ -1,0 +1,7 @@
+{% autoescape off %}
+
+Hola {{ user.name }}
+
+Restaura tu contrasena en el siguiente enlace:
+http://{{domain}}{% url 'validation_user' uidb64=user_id token=token %}
+{% endautoescape %}

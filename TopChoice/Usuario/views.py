@@ -89,6 +89,7 @@ def login(request):
         else:
             messages.error(request, 'Usuario invalido')
 
+#funcion para cerrar sesion
 @login_required(login_url = 'login')
 def logout(request):
     auth.logout(request)
@@ -100,3 +101,75 @@ def logout(request):
 @login_required(login_url='login')
 def profile(request):
     return render(request,'user/perfil.html')
+
+#funcion para el envio del correo para recuperar contrasena
+def forgot(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        
+        #validamos que el usuario exista
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email__exact=email)
+            
+            #parametros del correo que leera el usuario
+            page = get_current_site(request)
+            mail = 'Restaura tu contrasena'
+            body = render_to_string('user/restaurar.html',{
+                'user':user,
+                'domain':page,
+                'user_id':urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user)
+            })
+            user_email = email
+            send_mail = EmailMessage(
+                mail,body,settings.EMAIL_HOST_USER,to=[user_email]
+            )
+            send_mail.from_email = False
+            send_mail.send()
+            
+            messages.success(request,'Revisa tu correo para restaurar tu contrasena')
+            return redirect('forgot')
+        
+        else:
+            messages.error(request,'La cuenta no existe')
+            return redirect('forgot')
+            
+    return render(request,'user/forgot.html')
+
+#funcion para validar al usuario
+def validation_user(request,uidb64,token):
+    #obtenemo el id
+    try:
+        user_id = urlsafe_base64_decode(uidb64).decode()
+        user = User._default_manager.get(pk=user_id)
+    except(TypeError,ValueError,OverflowError, User.DoesNotExist):
+        user=None
+    
+    if user is not None and default_token_generator.check_token(user,token):
+        request.session['user_id']=user_id
+        messages.success(request,'Restaura tu contrasena')
+        return redirect('restart_password')
+    else:
+        messages.error(request,'Link no valido')
+        return redirect('header')
+    
+#funcion que crea la vista para reiniciar contrasena
+def restart_password(request):
+    if request.method == 'POST':
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+        
+        #validamos que la contrasenas coincidan
+        if password == confirm_password:
+            user_id = request.session.get('user_id')
+            user = User.objects.get(pk=user_id)
+            user.set_password(password)
+            user.save()
+            messages.success(request, 'Contrasena actualizada')
+            return redirect('header')
+        else:
+            messages.error(request, 'Contrasenas no coinciden')
+            return redirect('restart')
+        
+    else:
+        return render(request,'user/reiniciar.html')
