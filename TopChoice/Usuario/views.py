@@ -73,12 +73,13 @@ def activate(request,uidb64,token):
         messages.error(request,'No se pudo activar tu cuenta')
         return redirect('register')
 
+#funcion para iniciar sesion
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
         
-        user = auth.authenticate(email=email,password=password)
+        user = auth.authenticate(email=email,password=password) #metodo de autenticacion
         
         if user is not None:
             auth.login(request, user)
@@ -94,3 +95,8 @@ def logout(request):
     messages.success(request, 'Saliste exitosamente')
     
     return redirect('header')
+
+#funcion para crear la vista del perfil
+@login_required(login_url='login')
+def profile(request):
+    return render(request,'user/perfil.html')

@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head%}
+    <title>Perfil</title>
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            hola
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col rounded perfil_usuario">
+            <br>
+            <div class="row">
+                <div class="col text-center">
+                    imagen
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <small for="nombre" class="text-muted">Nombre</small>
+                            <h4 id="nombre">{{ user.name }}</h4>
+                        </div>
+                        <div class="col">
+                            <small for="correo" class="text-muted">Correo electornico</small>
+                            <h4 id="correo">{{ user.email }}</h4>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <small for="celular" class="text-muted">Celular</small>
+                            <h4 id="celular">{{ user.phonenumber }}</h4>
+                        </div>
+                        <div class="col">
+                            <small for="fecha" class="text-muted">Fecha</small>
+                            <h4 id="fecha">{{ user.date }}</h4>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <small for="direccion" class="text-muted">Direccion</small>
+                            <h4 id="direccion">{{ user.addres }}</h4>
+                        </div>
+                        <div class="col">
+                            <small for="ciudad" class="text-muted">Ciudad</small>
+                            <h4 id="ciudad">Bucaramanga</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col d-flex justify-content-end align-items-center">
+                    <p>Editar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

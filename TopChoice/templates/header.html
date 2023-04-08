@@ -39,7 +39,7 @@
                 </button>
                 {% else %}
                 <button class="btn_headers">
-                  <small href="#" class="title text-muted">{{ user.name }}</small>
+                  <a href="{% url 'profile' %}" class="title text-muted">{{ user.name }}</a>
                 </button>
                 <button class="btn_headers">
                   <a href="{% url 'logout' %}">Salir</a>
