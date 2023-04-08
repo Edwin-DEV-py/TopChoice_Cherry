@@ -8,7 +8,7 @@ class Products(models.Model):
     product_id = models.AutoField(unique=True,primary_key=True)
     product_name = models.CharField(max_length=50)
     slug = models.CharField(max_length=100,unique=True)
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=300)
     price = models.IntegerField()
     product_image_stock = models.ImageField(upload_to='photos/products/stock')
     product_image_secundary = models.ImageField(upload_to='photos/products/secundary',null=True,blank=True)
