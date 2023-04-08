@@ -17,18 +17,35 @@ def store(request, category_slug=None):
         categorys = get_object_or_404(Category,slug=category_slug)
         products = Products.objects.filter(category=categorys,is_available=True).order_by('product_name')#aqui tambien podria ser por id
         pagination = Paginator(products,12)
-        page = request.GET.get('page')
+        page = request.GET.get('page',1)
         page_x_products = pagination.get_page(page)
+        num_pages = pagination.num_pages
+        start = max(1, int(page)-2)
+        end = min(num_pages,int(page)+2)
+        if start == 1:
+            end = min(5, num_pages)
+        elif end == num_pages:
+            start = max(num_pages - 4,1)
+        page_range = range(start,end+1)
         count = products.count()
     else:      
         products = Products.objects.all().filter(is_available=True).order_by('product_name')#aqui tambien podria ser por id
         pagination = Paginator(products,12)
-        page = request.GET.get('page')
+        page = request.GET.get('page',1)
         page_x_products = pagination.get_page(page)
+        num_pages = pagination.num_pages
+        start = max(1, int(page)-2)
+        end = min(num_pages,int(page)+2)
+        if start == 1:
+            end = min(5, num_pages)
+        elif end == num_pages:
+            start = max(num_pages - 4,1)
+        page_range = range(start,end+1)
         count = products.count()
         
     context = {
         'products':page_x_products,
+        'page_range':page_range,
         'count':count,
         'categorys':categorys
     }
