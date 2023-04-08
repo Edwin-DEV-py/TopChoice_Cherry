@@ -11,7 +11,7 @@
     <div class="caja">
         <div class="row">
             <div class="col-sm col-md-4 imagen_producto">
-                <img src="{{ product_information.product_image_stock.url }}" alt="" class="img-fluid rounded-start">
+                <img src="{{ product_information.product_image_stock.url }}" alt="" class="img-fluid rounded-start" style="max-width: 280px;">
             </div>
             <div class="col-sm informacion">
                 <h2 class="title">{{ product_information.product_name }}</h2>
@@ -43,6 +43,7 @@
                           <h5>Descripcion</h5>
                           <p>{{ product_information.description }}</p>
                         </div>
+                        <br>
                     </div>
                 </div> <!-- row.// -->
                 {% if product_information.stock <= 0 %}
