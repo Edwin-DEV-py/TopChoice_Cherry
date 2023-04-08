@@ -80,6 +80,11 @@
       <div class="modal-dialog">
         <div class="modal-content body_modal">
           <div class="modal-body body_sesion">
+            {% if request.GET.command == 'verification' %}
+            <h2>Revisa tu bandeja de entrada para confirmar tu cuenta [{{ request.GET.email }}]</h2>
+            <br>
+            Si tu cuenta ya fue verificada dirigete al<a href="{% url 'header' %}">Inicio</a>
+            {% else %}
             <form class="row g-3" action="{% url 'login' %}" method="POST">
               {% csrf_token %}
               <div class="text-center">
@@ -103,6 +108,7 @@
                   <a href="{% url 'register' %}" id="boton_registro" class="a_sesion">No tienes cuenta? registrate</a>
               </div>     
               </form>
+            {% endif %}
           </div>
         </div>
       </div>

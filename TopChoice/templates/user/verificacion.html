@@ -1,0 +1,7 @@
+{% autoescape off %}
+
+Bienvenido {{ user.name }}
+
+Activa tu cuenta para continuar:
+http://{{domain}}{% url 'activate' uidb64=user_id token=token %}
+{% endautoescape %}

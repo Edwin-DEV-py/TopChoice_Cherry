@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'Usuario',
     'Categorias',
     'Carrito',
-    'Ordenes_compra'
+    'Ordenes_compra',
+    'django.core.mail',
 ]
 
 
@@ -149,6 +150,14 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
 
+#verificcion de email
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'TopchoiceCherry@gmail.com'#Topchoice0000
+EMAIL_HOST_PASSWORD = 'mspojcfscgdwgemi'
+EMAIL_USE_TLS = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -156,4 +165,5 @@ MEDIA_ROOT = BASE_DIR /'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #modelo de usuario del aplicativo
+
 AUTH_USER_MODEL = 'Usuario.User'

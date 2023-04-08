@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head%}
+    <title>Verificaion</title>
+{% endblock %}
+{% block content %}
+{% if request.GET.command == 'verification' %}
+<div class="container mx-auto alert alert-info" role="alert">
+    Muchas gracias por registrarte en nuestro web, te hemos enviado un email para confirmar tu cuenta [{{ request.GET.email }}]
+    <br><br>
+    Si ya verificaste tu cuenta, puedes iniciar sesion <a href="{% url 'header' %}">Login</a>
+</div>
+{% endif %}
+{% endblock %}
