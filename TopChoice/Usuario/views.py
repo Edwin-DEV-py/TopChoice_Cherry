@@ -46,8 +46,8 @@ def register(request):
             send_mail.send()
             
             #mandamos mensaje de autenticacion
-            messages.success(request, 'Usuario registrado correctamente')
-            return redirect('header')
+            #messages.success(request, 'Usuario registrado correctamente')
+            return redirect('/user/register/?command=verification&email='+email)
     
     context = {
         'form':form

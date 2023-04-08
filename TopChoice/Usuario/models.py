@@ -40,7 +40,7 @@ class Manager_account(BaseUserManager):
 class User(AbstractBaseUser):
     
     name = models.CharField(max_length=255,null=False,blank=False)
-    email = models.EmailField(max_length=200,unique=True,primary_key=True)
+    email = models.EmailField(max_length=200,unique=True,primary_key=True,db_index=True)
     phonenumber = models.CharField(max_length=10,unique=True)#instalar libreria
     addres = models.CharField(max_length=255,null=False)
     id = models.IntegerField(unique=True)

@@ -10,6 +10,13 @@
         
     </div>
     <div class="div_form container d-flex justify-content-center text-center">
+        {% if request.GET.command == 'verification' %}
+        <div class="container mx-auto alert alert-ssuccess" role="alert">
+            Muchas gracias por registrarte en nuestra web, enviamos un email para confirmar tu cuenta [{{ request.GET.email }}]
+            <br><br>
+            Si ya verificaste tu cuenta, puedes iniciar sesion en <a href="{% url 'header' %}">Inicio</a>
+        </div>
+        {% else %}
         <div class="formulario container-fluid caja">
             <h1>Registro</h1>
             <form class="row g-3" action="{% url 'register' %}" method="POST">
@@ -68,6 +75,7 @@
             </form>
             <br>
         </div>
+        {% endif %}
     </div>
 </div>  
 {% endblock %}
