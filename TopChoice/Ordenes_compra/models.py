@@ -36,7 +36,7 @@ class Order(models.Model):
     order_total = models.FloatField()
     iva = models.FloatField()
     status = models.CharField(max_length=20, choices=status_content, default='Nuevo')
-    #anadir el campo ip
+    ip = models.CharField(blank=True,max_length=20)
     is_ordered = models.BooleanField(default=False)
     create_date = models.DateTimeField(auto_now_add=True)
     upload_date = models.DateTimeField(auto_now=True)
