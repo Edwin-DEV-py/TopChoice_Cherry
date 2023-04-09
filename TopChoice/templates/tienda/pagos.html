@@ -123,15 +123,14 @@
                     <dd class="text-right text-dark b"><strong>${{ final }}</strong></dd>
                 </dl>
                 <hr>
-                <a href="{% url 'shipping_address' %}" class="btn btn-primary btn-block boton_pagar" id="boton_pagar"> Pagar </a>
+                <!--Proceso de paypal-->
+                <div id="paypal-button-container"></div>
             </div>
             </div>
-    
     </aside> 
-    
-    
     </div>
     </div>
     </section>
-<!---->
+<!--Script paypal-->
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 {% endblock %}
