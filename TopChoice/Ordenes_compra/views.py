@@ -58,9 +58,17 @@ def order(request,total=0,quantity = 0):
             data.order_note = id
             data.save()
             
-            return redirect('shipping_address')
+            order = Order.objects.get(user=user, is_ordered=False,order_note=id)
+            context = {
+                'order':order,
+                'items':items,
+                'total':total,
+                'iva':iva,
+                'final':final
+            }
+            
+            return render(request,'tienda/pagos.html',context)
     else:
         return redirect('shipping_address')
-    
-    return render(request,'ordenes.html')
+
 

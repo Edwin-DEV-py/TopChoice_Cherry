@@ -22,7 +22,6 @@
 <br>
 <section class="section-content padding-y bg">
     <div class="container">
-
     <div class="row">
         <aside class="col-lg-8">
     <div class="card5">
@@ -36,9 +35,14 @@
     <tr>
         <td>
             <div class="row">
+                <p class="title text-dark">Remitente: {{ order.name }}</p>
+                <p class="title text-dark">Email: {{ order.email }}</p>
+                <p class="title text-dark">Telefono: {{ order.phonenumber }}</p>
                 <figcaption class="info">
-                    <a href="" class="title text-dark">Direccion de facturacion</a>
+                    <p class="title text-dark">{{ order.full_address }}</p>
                 </figcaption>
+                <p class="title text-dark">Direccion: {{ order.address_1 }}</p>
+                <p class="title text-dark">Direccion como la conoces: {{ order.address_2 }}</p>
             </div>
         </td>
     </tr>
@@ -61,8 +65,39 @@
                     <a href="" class="title text-dark">Revision de productos</a>
                 </figcaption>
             </div>
-            <div class="ro">
-                hola
+            <div class="row">
+                <table class="table table-borderless">
+                    <thead class="text-muted">
+                        <tr class="small text-uppercase">
+                            <th scope="col">Producto</th>
+                            <th scope="col" width="120">Cantidad</th>
+                            <th scope="col" width="120">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <figure class="itemside align-items-center">
+                                            <div class="aside"><img src="{{ item.product.product_image_stock.url }}" style="max-height: 80px;" class="img-sm" alt="Responsive image"></div>
+                                        </figure>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <figcaption class="info">
+                                            <a href="" class="title text-dark ">{{item.product.product_name}}</a>
+                                        </figcaption>
+                                    </div>
+
+                                </div>
+                            </td>
+                            <td class="text-center">{{ item.quantity }}</td>
+                            <td>{{ item.sub_total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </td>
     </tr>
@@ -96,8 +131,6 @@
     
     
     </div>
-
-    
     </div>
     </section>
 <!---->

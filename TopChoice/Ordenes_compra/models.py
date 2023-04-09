@@ -45,7 +45,7 @@ class Order(models.Model):
         return f'{self.user_name}'
     
     def full_address(self):
-        return f'{self.city} {self.addres_1} {self.addres_2}'
+        return f'{self.country} {self.departament} {self.city}'
     
     def __str__(self):
         return self.user_name
