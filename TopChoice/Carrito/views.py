@@ -15,40 +15,31 @@ def _cart_id(request):
     if not cart:
         cart = request.session.create()
     return cart
-    
+
+@login_required(login_url='login')
 def add(request, product_id):
     
-    product = Products.objects.get(product_id=product_id)
-    
-    #verificamos si el carrito existe y si no lo creamos
+    product = get_object_or_404(Products, product_id=product_id)
+    user = request.user
     try:
-        cart = Cart.objects.get(cart_id=_cart_id(request))
-    except Cart.DoesNotExist:
-        cart = Cart.objects.create(
-            cart_id = _cart_id(request)
-        )
-    cart.save()
-        
-    #ahora agregamos los productos al carrito
-    try:
-        item = Cart_item.objects.get(product=product,cart=cart)
-        item.quantity +=1 #para saber la cantidad de items
+        item = Cart_item.objects.get(product=product,user=user)
+        item.quantity +=1
         item.save()
     except Cart_item.DoesNotExist:
         item = Cart_item.objects.create(
             product=product,
-            quantity = 1,
-            cart = cart
+            user=user,
+            quantity=1
         )
-        item.save()
+        return redirect('shopping_cart')
     
     return redirect('shopping_cart')
 
 #remover la cantida del item del carrito
 def remove(request, product_id):
-    cart = Cart.objects.get(cart_id=_cart_id(request))
+    user = request.user
     product = get_object_or_404(Products, product_id=product_id)
-    item = Cart_item.objects.get(product=product,cart=cart)
+    item = Cart_item.objects.get(product=product,user=user)
     if item.quantity>1:
         item.quantity -=1
         item.save()
@@ -58,18 +49,24 @@ def remove(request, product_id):
 
 #borrar el item del carrito
 def delete(request, product_id):
-    cart = Cart.objects.get(cart_id=_cart_id(request))
+    user = request.user
     product = get_object_or_404(Products, product_id=product_id)
-    item = Cart_item.objects.get(product=product,cart=cart)
+    item = Cart_item.objects.get(product=product,user=user)
     item.delete()
     return redirect('shopping_cart')
     
+@login_required(login_url='login')
 def shopping_cart(request, total=0, quantity=0, items=None):
-    
+    iva = 0
+    final = 0
     #mostramos los productos si existen
     try:
-        cart = Cart.objects.get(cart_id=_cart_id(request))#obtenemos el carrito asignado
-        items = Cart_item.objects.filter(cart=cart, is_active=True) #esto es una lista de los items
+        
+        if request.user.is_authenticated:
+            items = Cart_item.objects.filter(user=request.user, is_active=True)
+        else:
+            cart = Cart.objects.get(cart_id=_cart_id(request))#obtenemos el carrito asignado
+            items = Cart_item.objects.filter(cart=cart, is_active=True) #esto es una lista de los items
         #bucle para allar el precio total de la orden
         for item in items:
             total += (item.product.price*item.quantity)
@@ -92,9 +89,15 @@ def shopping_cart(request, total=0, quantity=0, items=None):
 
 @login_required(login_url='login')
 def shipping_address(request,total=0, quantity=0, items=None):
+    iva=0
+    final=0
     try:
-        cart = Cart.objects.get(cart_id=_cart_id(request))#obtenemos el carrito asignado
-        items = Cart_item.objects.filter(cart=cart, is_active=True) #esto es una lista de los items
+        
+        if request.user.is_authenticated:
+            items = Cart_item.objects.filter(user=request.user, is_active=True)
+        else:
+            cart = Cart.objects.get(cart_id=_cart_id(request))#obtenemos el carrito asignado
+            items = Cart_item.objects.filter(cart=cart, is_active=True) #esto es una lista de los items
         #bucle para allar el precio total de la orden
         for item in items:
             total += (item.product.price*item.quantity)

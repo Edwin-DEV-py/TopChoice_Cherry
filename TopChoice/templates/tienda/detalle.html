@@ -54,7 +54,11 @@
                   <h4 href="#" class=""> <span class="text">Producto agregado</span></h4>
                   <a href="{% url 'shopping_cart' %}" class="btn boton_comprar"> <span class="text">Ir al carrito</span> <i class="fas fa-shopping-cart"></i></a>
                   {% else %}
-                    <a href="{% url 'add' product_information.product_id %}" class="btn  btn-primary boton_comprar"> <span class="text">Agregar al Carrito</span> <i class="fas fa-shopping-cart"></i>  </a>
+                    {% if user.is_authenticated %}
+                      <a href="{% url 'add' product_information.product_id %}" class="btn  btn-primary boton_comprar"> <span class="text">Agregar al Carrito</span> <i class="fas fa-shopping-cart"></i>  </a>
+                    {% else %}
+                    <h5 href="#" class=""> <span class="text">Inicia sesion para comprar</span></h5>
+                    {% endif %}
                   {% endif %}
                 {% endif %}
               </div> 

@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import *
+from Carrito.views import _cart_id
+from Carrito.models import *
 from django.contrib import messages,auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
@@ -82,12 +84,24 @@ def login(request):
         user = auth.authenticate(email=email,password=password) #metodo de autenticacion
         
         if user is not None:
-            auth.login(request, user)
             
+            try:
+                cart = Cart.objects.get(cart_id=_cart_id(request))
+                items_in_cart = Cart_item.objects.filter(cart=cart).exists()
+                if items_in_cart:
+                    items = Cart_item.objects.filter(cart=cart)
+                    for item in items:
+                        item.user = user 
+                        item.save()
+            except:
+                pass
+            
+            auth.login(request, user)
             return redirect('header')
         
         else:
             messages.error(request, 'Usuario invalido')
+    return render(request,'index.html')
 
 #funcion para cerrar sesion
 @login_required(login_url = 'login')

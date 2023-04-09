@@ -6,7 +6,11 @@ def counter(request):
     
     try:
         cart = Cart.objects.filter(cart_id=_cart_id(request))
-        items = Cart_item.objects.all().filter(cart=cart[:1]) #me trae un elemento en ves de todo el array
+        
+        if request.user.is_authenticated:
+            items = Cart_item.objects.all().filter(user=request.user)
+        else:                
+            items = Cart_item.objects.all().filter(cart=cart[:1]) #me trae un elemento en ves de todo el array
         #esto obtiene la cantidad de cada producto
         for item in items:
             cart_count += item.quantity
