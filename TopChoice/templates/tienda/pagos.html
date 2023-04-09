@@ -1,0 +1,104 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head%}
+    <link rel="stylesheet" href="{% static 'css/carrito.css' %}">
+    <title>Mi Carrito</title>
+    <style>
+        .boton_tienda{
+            background: #E37DAF;
+            border-color: #E37DAF;
+        }
+        .boton_tienda:hover{
+            background: #E37DAF;
+            border-color: #E37DAF;
+        }
+        .bg_head{
+            background: rgb(231, 229, 229);
+        }
+    </style>
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+<br>
+<section class="section-content padding-y bg">
+    <div class="container">
+
+    <div class="row">
+        <aside class="col-lg-8">
+    <div class="card5">
+    <table class="table border">
+    <thead class="text-muted">
+    <tr class="small text-uppercase bg_head">
+        <th scope="col">Direccion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <div class="row">
+                <figcaption class="info">
+                    <a href="" class="title text-dark">Direccion de facturacion</a>
+                </figcaption>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="row">
+                <figcaption class="info">
+                    <a href="" class="title text-dark">Metodo de pago</a>
+                </figcaption>
+            </div>
+            <div class="ro">
+                hola
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="row">
+                <figcaption class="info">
+                    <a href="" class="title text-dark">Revision de productos</a>
+                </figcaption>
+            </div>
+            <div class="ro">
+                hola
+            </div>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    
+        </aside>
+        <aside class="col-lg-4">
+    
+            <div class="card5">
+            <div class="card-body">
+                <dl class="dlist-align">
+                    <dt>Subtotal:</dt>
+                    <dd class="text-right">${{ total }}</dd>
+                </dl>
+                <dl class="dlist-align">
+                    <dt>Iva:</dt>
+                    <dd class="text-right"> ${{ iva }}</dd>
+                </dl>
+                <dl class="dlist-align">
+                    <dt>Total:</dt>
+                    <dd class="text-right text-dark b"><strong>${{ final }}</strong></dd>
+                </dl>
+                <hr>
+                <a href="{% url 'shipping_address' %}" class="btn btn-primary btn-block boton_pagar" id="boton_pagar"> Pagar </a>
+            </div>
+            </div>
+    
+    </aside> 
+    
+    
+    </div>
+
+    
+    </div>
+    </section>
+<!---->
+{% endblock %}

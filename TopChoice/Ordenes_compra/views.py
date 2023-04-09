@@ -3,6 +3,9 @@ from Carrito.models import *
 from .forms import *
 import datetime
 
+def payment(request):
+    return render(request,'tienda/pagos.html')
+
 # Crear orden
 def order(request,total=0,quantity = 0):
     
