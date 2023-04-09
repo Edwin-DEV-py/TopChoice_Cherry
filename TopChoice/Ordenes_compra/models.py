@@ -23,12 +23,12 @@ status_content = (
 class Order(models.Model):
     order_id = models.AutoField(unique=True,primary_key=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    payment = models.ForeignKey(Payment,on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    payment = models.ForeignKey(Payment,on_delete=models.CASCADE,blank=True,null=True)
+    user_name = models.CharField(max_length=50)
     phonenumber = models.CharField(max_length=10)
     email = models.CharField(max_length=50)
-    addres_1 = models.CharField(max_length=100)
-    addres_2 = models.CharField(max_length=100)
+    address_1 = models.CharField(max_length=100)
+    address_2 = models.CharField(max_length=100)
     departament = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=100,default="none")
@@ -42,13 +42,13 @@ class Order(models.Model):
     upload_date = models.DateTimeField(auto_now=True)
     
     def name(self):
-        return f'{self.first_name} {self.first_last_name}'
+        return f'{self.user_name}'
     
     def full_address(self):
         return f'{self.city} {self.addres_1} {self.addres_2}'
     
     def __str__(self):
-        return self.first_name
+        return self.user_name
     
 class Product_order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
