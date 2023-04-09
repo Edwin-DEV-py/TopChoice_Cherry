@@ -47,6 +47,7 @@
                 </div>
             </form>
         </div>
+        <br>
         <aside class="col-lg-6">
             <div class="card_tabla border rounded" style="padding: 10px;">
                 <table class="table table-borderless">
@@ -56,13 +57,34 @@
                             <th scope="col" width="120">Cantidad</th>
                             <th scope="col" width="120">Precio</th>
                         </tr>
+                        <tr>
+                            <th><hr></th>
+                            <th><hr></th>
+                            <th><hr></th>
+                        </tr>
                     </thead>
                     <tbody>
+                        {% for item in items %}
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <figure class="itemside align-items-center">
+                                            <div class="aside"><img src="{{ item.product.product_image_stock.url }}" style="max-height: 80px;" class="img-sm" alt="Responsive image"></div>
+                                        </figure>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <figcaption class="info">
+                                            <a href="" class="title text-dark ">{{item.product.product_name}}</a>
+                                        </figcaption>
+                                    </div>
+
+                                </div>
+                            </td>
+                            <td class="text-center">{{ item.quantity }}</td>
+                            <td>{{ item.sub_total }}</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 <div class="col-12">

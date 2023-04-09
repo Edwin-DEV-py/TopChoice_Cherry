@@ -28,3 +28,4 @@ urlpatterns = [
     path('user/',include('Usuario.urls'))
     #aqui colocar la etiqueta include para usar las urls de las otras apps.
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+

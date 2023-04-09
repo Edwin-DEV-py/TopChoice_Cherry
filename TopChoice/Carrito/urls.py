@@ -8,3 +8,4 @@ urlpatterns = [
     path('delete/<int:product_id>/',views.delete, name="delete"),
     path('shipping_address/',views.shipping_address, name="shipping_address"),
 ]
+

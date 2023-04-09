@@ -2,6 +2,11 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from Productos.models import *
 from .models import *
+from django.contrib.auth.decorators import login_required
+
+#pagina 404 personalizada
+def custom_404(request, exception):
+    return render(request, 'paginas_error/login_error.html', status=404)
 
 #obtenemos la sesion del usuario actual dentro de la web local a traves de una funcion que trabaja a nivel de archivo
 def _cart_id(request):
@@ -85,5 +90,26 @@ def shopping_cart(request, total=0, quantity=0, items=None):
     
     return render(request, 'tienda/carrito.html',context)
 
-def shipping_address(request):
-    return render(request,'tienda/envio.html')
+@login_required(login_url='login')
+def shipping_address(request,total=0, quantity=0, items=None):
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))#obtenemos el carrito asignado
+        items = Cart_item.objects.filter(cart=cart, is_active=True) #esto es una lista de los items
+        #bucle para allar el precio total de la orden
+        for item in items:
+            total += (item.product.price*item.quantity)
+            quantity += item.quantity
+            
+        iva = (5*total)/100
+        final = total + iva
+    except ObjectDoesNotExist:
+        pass
+    
+    context = {
+        'total':total,
+        'quantity':quantity,
+        'items':items,
+        'iva':iva,
+        'final':final
+    }
+    return render(request,'tienda/envio.html',context)
