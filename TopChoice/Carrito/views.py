@@ -27,7 +27,7 @@ def add(request, product_id):
     #ahora agregamos los productos al carrito
     try:
         item = Cart_item.objects.get(product=product,cart=cart)
-        item.quantity +=1 #para sabe rla cantidad de items
+        item.quantity +=1 #para saber la cantidad de items
         item.save()
     except Cart_item.DoesNotExist:
         item = Cart_item.objects.create(
@@ -84,3 +84,6 @@ def shopping_cart(request, total=0, quantity=0, items=None):
     }
     
     return render(request, 'tienda/carrito.html',context)
+
+def shipping_address(request):
+    return render(request,'tienda/envio.html')
