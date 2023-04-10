@@ -1,7 +1,18 @@
 {% autoescape off %}
 
-Hola {{ user.name }}
+Estimado/a {{ user.name }},
 
-Restaura tu contrasena en el siguiente enlace:
+Hemos recibido su solicitud para restablecer la contraseña de su cuenta de TopChoice. Para continuar con este proceso, haga clic en el siguiente enlace:
+
 http://{{domain}}{% url 'validation_user' uidb64=user_id token=token %}
+
+Una vez que haya hecho clic en el enlace, se le pedirá que cree una nueva contraseña para su cuenta de TopChoice. Asegúrese de crear una contraseña segura y de que la recuerde para futuros inicios de sesión.
+
+Si no ha solicitado el restablecimiento de su contraseña de TopChoice, por favor ignore este correo electrónico.
+
+Si tiene alguna pregunta o necesita ayuda para restablecer su contraseña, no dude en ponerse en contacto con nuestro equipo de soporte en topchoice@gmail.com.
+
+Atentamente,
+
+El equipo de TopChoice
 {% endautoescape %}

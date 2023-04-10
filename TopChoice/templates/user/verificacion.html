@@ -1,7 +1,14 @@
 {% autoescape off %}
 
-Bienvenido {{ user.name }}
+Estimado/a {{ user.name }},
 
-Activa tu cuenta para continuar:
+¡Gracias por registrarse en TopChoice! Para completar el proceso de creación de su cuenta, necesitamos que verifique su dirección de correo electrónico haciendo clic en el siguiente enlace de verificación:
+
 http://{{domain}}{% url 'activate' uidb64=user_id token=token %}
+
+Una vez que haya hecho clic en el enlace, su cuenta estará activa y podrá comenzar a utilizar nuestros servicios. Le recomendamos que inicie sesión en su cuenta y revise su información de perfil para asegurarse de que esté completa y actualizada.
+
+Si tiene alguna pregunta o necesita ayuda para verificar su cuenta, no dude en ponerse en contacto con nuestro equipo de soporte en topchoice@gmail.com.
+
+Gracias por elegir TopChoice.
 {% endautoescape %}
