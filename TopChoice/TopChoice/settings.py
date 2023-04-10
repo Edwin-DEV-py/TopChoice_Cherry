@@ -167,3 +167,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #modelo de usuario del aplicativo
 
 AUTH_USER_MODEL = 'Usuario.User'
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
