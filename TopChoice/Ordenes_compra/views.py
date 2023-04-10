@@ -1,9 +1,29 @@
 from django.shortcuts import render,redirect
 from Carrito.models import *
 from .forms import *
+from .models import *
 import datetime
+import json
 
 def payment(request):
+    
+    body = json.loads(request.body)
+    order = Order.objects.get(user=request.user, is_ordered=False, order_note=body['orderID'])
+    
+    payment = Payment(
+        user = request.user,
+        id = body['transID'],
+        payment_method = body['payment_method'],
+        amount_id = order.order_total,
+        status = body['status'] #esto lo devuelve paypal
+    )
+    
+    payment.save()
+    
+    order.payment = payment #le colocamos el valor de payment al atributo de payment en la clase order
+    order.is_ordered = True #ahora la orden cambia a aceptado
+    order.save()
+    
     return render(request,'tienda/pagos.html')
 
 # Crear orden

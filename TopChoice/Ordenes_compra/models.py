@@ -4,6 +4,7 @@ from Productos.models import *
 
 class Payment(models.Model):
     payment_id = models.AutoField(unique=True,primary_key=True)
+    id = models.CharField(max_length=100)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     payment_method = models.CharField(max_length=100)
     amount_id = models.CharField(max_length=100)
@@ -11,7 +12,7 @@ class Payment(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.payment_id
+        return self.id
     
 status_content = (
     ('Nuevo','Nuevo'),

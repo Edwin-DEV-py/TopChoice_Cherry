@@ -135,8 +135,28 @@
 <!--Script paypal-->
 <script>
 
+    function Cookie(name){
+        let Cvalue = null;
+        if(document.cookie && document.cookie != ''){
+            const cookies = document.cookie.split(';') //la separamos desde el ;
+            for(let i = 0; i<cookies.length;i++){
+                const cookie = cookies[i].trim(); //capturamos el valor de la cookie
+                if(cookie.substring(0,name.length+1) === (name + '=')){ //buscamos el nombre de la cookie y la comparamos a ver si es igual
+                    Cvalue = decodeURIComponent(cookie.substring(name.length+1)) //decodificamos el valor
+                    break
+                } 
+            }
+        }
+        return Cvalue;
+    }
+
     //ignorar este error, solo estamos capturando la variable dolar
-    const amount = {{ dolares }}
+    const amount = "{{ dolares }}"
+    const url = "{% url 'payment' %}"
+
+    const csrftoken = Cookie('csrftoken'); //obtenemos las cookies de la transaccion
+    const orderID = "{{ order.order_note }}"
+    const payment_method = 'Paypal'
     // Render the PayPal button into #paypal-button-container
     paypal.Buttons({
         // Set up the transaction
@@ -155,8 +175,25 @@
             return actions.order.capture().then(function(orderData) {
                 // Successful capture! For demo purposes:
                 console.log(orderData);
-                var transaction = orderData.purchase_units[0].payments.captures[0];
-                alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                send();
+                
+                function send(){
+                    fetch(url,{
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"application/json",
+                            "X-CSRFToken": csrftoken,
+                        },
+                        body: JSON.stringify({
+                            orderID:orderID,
+                            transID:orderData.id,
+                            payment_method:payment_method,
+                            status: orderData.status
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                }
 
                 // Replace the above to show a success message within this page, e.g.
                 // const element = document.getElementById('paypal-button-container');
