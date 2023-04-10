@@ -25,6 +25,7 @@ def order(request,total=0,quantity = 0):
         
     iva = (5*total)/100
     final = total + iva
+    dolares = round(final/4500,2)
     
     if request.method == 'POST':
         form = Orden_Form(request.POST)
@@ -64,7 +65,8 @@ def order(request,total=0,quantity = 0):
                 'items':items,
                 'total':total,
                 'iva':iva,
-                'final':final
+                'final':final,
+                'dolares':dolares
             }
             
             return render(request,'tienda/pagos.html',context)

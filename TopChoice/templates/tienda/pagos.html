@@ -134,6 +134,8 @@
     </section>
 <!--Script paypal-->
 <script>
+
+    const amount = {{ dolares }}
     // Render the PayPal button into #paypal-button-container
     paypal.Buttons({
         // Set up the transaction
@@ -141,7 +143,7 @@
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '88.44'
+                        value: amount
                     }
                 }]
             });
