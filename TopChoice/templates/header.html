@@ -38,8 +38,13 @@
                     </svg>
                 </button>
                 {% else %}
-                  {% if user.employe_roll %}
+                  {% if user.employe_roll or user.is_admin %}
                     <a href="{% url 'inventary' %}">inventario</a>
+                    {% if user.is_admin %}
+                    <button class="btn_headers">
+                      <a href="{% url 'profile' %}" class="title text-muted">{{ user.name }}</a>
+                    </button>
+                    {% endif %}
                   {% else %}
                     <button class="btn_headers">
                       <a href="{% url 'profile' %}" class="title text-muted">{{ user.name }}</a>

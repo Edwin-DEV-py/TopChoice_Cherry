@@ -33,7 +33,12 @@
                     <td>{{ products.is_available }}</td>
                     <td>{{ products.stock }}</td>
                     <td>{{ products.price }}</td>
-                    <td class="ss"><a href="{% url 'edit_inventary' products.product_id %}" class="btn btn-sm btn-primary btn-block">Editar</a></td>
+                    <td class="ss">
+                        {% if user.employe_roll %}
+                        <a href="{% url 'edit_inventary' products.product_id %}" class="btn btn-sm btn-primary btn-block">Editar</a>
+                        {% else %}
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>
