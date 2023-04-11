@@ -96,7 +96,7 @@ def search(request):
 
 #acceso al invenatario de productos
 @login_required
-@user_passes_test(lambda user: user.employe_roll,login_url='login')
+@user_passes_test(lambda user: user.employe_roll or user.is_admin,login_url='login')
 def inventary(request):
     products = Products.objects.all()
     pagination = Paginator(products,20)
@@ -112,3 +112,15 @@ def inventary(request):
     page_range = range(start,end+1)
     context = {'products':page_x_products,'page_range':page_range}
     return render(request,'administracion/inventario.html',context)
+
+def edit_inventary(request,product_id):
+    product = Products.objects.get(product_id=product_id)
+    if request.method == 'GET':
+        form = Product_Form(instance=product)
+        context = {'form':form, 'product':product}
+    else:
+        form = Product_Form(request.POST,instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('inventary')
+    return render(request,'administracion/editar_productos.html',context)
