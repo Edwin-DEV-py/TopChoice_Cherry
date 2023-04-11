@@ -72,8 +72,14 @@ def shopping_cart(request, total=0, quantity=0, items=None):
             total += (item.product.price*item.quantity)
             quantity += item.quantity
             
+        if request.user.is_authenticated and request.user.is_admin:
+            discount = request.user.discount/100
+            final = total*(1-discount)   
+        elif request.user.is_authenticated:
+            final = total
+    
         iva = (5*total)/100
-        final = total + iva
+        final = final + iva
     except ObjectDoesNotExist:
         pass
     
@@ -103,8 +109,14 @@ def shipping_address(request,total=0, quantity=0, items=None):
             total += (item.product.price*item.quantity)
             quantity += item.quantity
             
+        if request.user.is_authenticated and request.user.is_admin:
+            discount = request.user.discount/100
+            final = total*(1-discount)   
+        elif request.user.is_authenticated:
+            final = total
+    
         iva = (5*total)/100
-        final = total + iva
+        final = final + iva
     except ObjectDoesNotExist:
         pass
     

@@ -43,8 +43,14 @@ def order(request,total=0,quantity = 0):
         total += (item.product.price * item.quantity)
         quantity += item.quantity
         
+    if request.user.is_authenticated and request.user.is_admin:
+            discount = request.user.discount/100
+            final = total*(1-discount)   
+    elif request.user.is_authenticated:
+        final = total
+    
     iva = (5*total)/100
-    final = total + iva
+    final = final + iva
     dolares = round(final/4500,2)
     
     if request.method == 'POST':
