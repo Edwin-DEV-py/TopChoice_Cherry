@@ -38,9 +38,13 @@
                     </svg>
                 </button>
                 {% else %}
-                <button class="btn_headers">
-                  <a href="{% url 'profile' %}" class="title text-muted">{{ user.name }}</a>
-                </button>
+                  {% if user.employe_roll %}
+                    <a href="{% url 'inventary' %}">inventario</a>
+                  {% else %}
+                    <button class="btn_headers">
+                      <a href="{% url 'profile' %}" class="title text-muted">{{ user.name }}</a>
+                    </button>
+                  {% endif %}
                 <button class="btn_headers">
                   <a href="{% url 'logout' %}">Salir</a>
                 </button>

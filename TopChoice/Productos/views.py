@@ -1,10 +1,12 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from Carrito.models import *
 from Carrito.views import _cart_id
 from Categorias.models import Category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required, user_passes_test
+from .forms import *
 
 #muestra los productos ya sea todos o filtrados, con una paginacion para evitar sobrecargar la DB
 def store(request, category_slug=None):
@@ -91,4 +93,22 @@ def search(request):
     }
     
     return render(request, 'tienda/tienda.html',context)
-    
+
+#acceso al invenatario de productos
+@login_required
+@user_passes_test(lambda user: user.employe_roll,login_url='login')
+def inventary(request):
+    products = Products.objects.all()
+    pagination = Paginator(products,20)
+    page = request.GET.get('page',1)
+    page_x_products = pagination.get_page(page)
+    num_pages = pagination.num_pages
+    start = max(1, int(page)-2)
+    end = min(num_pages,int(page)+2)
+    if start == 1:
+        end = min(5, num_pages)
+    elif end == num_pages:
+        start = max(num_pages - 4,1)
+    page_range = range(start,end+1)
+    context = {'products':page_x_products,'page_range':page_range}
+    return render(request,'administracion/inventario.html',context)
