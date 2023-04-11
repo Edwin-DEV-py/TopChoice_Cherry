@@ -84,7 +84,7 @@ def search(request):
         keyword = request.GET['keyword']
         #obtenemos el conjunto de productos que coincidan con lo escrito
         if keyword:
-            products = Products.objects.order_by('product_name').filter(Q(product_name__icontains=keyword))#aqui esta el query, la | es un OR
+            products = Products.objects.order_by('product_id').filter(Q(product_name__icontains=keyword))#aqui esta el query, la | es un OR
             count = products.count()
             
     context = {

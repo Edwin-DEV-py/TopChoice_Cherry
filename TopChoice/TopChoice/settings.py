@@ -168,4 +168,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'Usuario.User'
 
+#ventanas
 SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
