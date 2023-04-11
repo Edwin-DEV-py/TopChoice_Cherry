@@ -84,7 +84,7 @@ def search(request):
         keyword = request.GET['keyword']
         #obtenemos el conjunto de productos que coincidan con lo escrito
         if keyword:
-            products = Products.objects.order_by('product_name').filter(Q(description__icontains=keyword) | Q(product_name__icontains=keyword))#aqui esta el query, la | es un OR
+            products = Products.objects.order_by('product_name').filter(Q(product_name__icontains=keyword))#aqui esta el query, la | es un OR
             count = products.count()
             
     context = {
@@ -113,6 +113,9 @@ def inventary(request):
     context = {'products':page_x_products,'page_range':page_range}
     return render(request,'administracion/inventario.html',context)
 
+#editar inventario
+@login_required
+@user_passes_test(lambda user: user.employe_roll,login_url='login')
 def edit_inventary(request,product_id):
     product = Products.objects.get(product_id=product_id)
     if request.method == 'GET':
