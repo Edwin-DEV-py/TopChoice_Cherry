@@ -25,6 +25,21 @@ def payment(request):
     order.is_ordered = True #ahora la orden cambia a aceptado
     order.save()
     
+    #registrar los items en la tabla de productos por cada compra
+    items = Cart_item.objects.filter(user=request.user)
+    
+    #obbtenemos los datos
+    for item in items:
+        product = Product_order()
+        product.order_id = order.order_id
+        product.payment = payment
+        product.user_id = request.user.pk
+        product.product_id = item.product.product_id
+        product.quantity = item.quantity
+        product.product_price = item.product.price
+        product.ordered = True
+        product.save()
+        
     return render(request,'tienda/pagos.html')
 
 # Crear orden

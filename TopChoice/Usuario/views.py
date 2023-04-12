@@ -117,6 +117,7 @@ def logout(request):
 def profile(request):
     return render(request,'user/perfil.html')
 
+#editar perfil
 @login_required(login_url='login')
 def edit_profile(request,id):
     perfil= User.objects.get(id=id)
