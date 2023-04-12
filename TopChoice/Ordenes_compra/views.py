@@ -6,6 +6,9 @@ import datetime
 import json
 import math
 from Productos.models import *
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
 
 def payment(request):
     
@@ -46,9 +49,23 @@ def payment(request):
         product_stock.stock -= item.quantity
         product_stock.save()
         
-        #eliminamos el carrito de compra
-        Cart_item.objects.filter(user=request.user).delete()
+    #eliminamos el carrito de compra
+    Cart_item.objects.filter(user=request.user).delete()
         
+    #generar el correo de la factura
+    mail = 'Gracias por tu compra'
+    body = render_to_string('tienda/factura.html',{
+        'user':request.user,
+        'order':order,
+        'items':items
+    })
+    user_email = request.user.email
+    send_mail = EmailMessage(
+        mail,body,settings.EMAIL_HOST_USER,to=[user_email]
+    )
+    send_mail.from_email = False
+    send_mail.send()
+    
     return render(request,'tienda/pagos.html')
 
 # Crear orden

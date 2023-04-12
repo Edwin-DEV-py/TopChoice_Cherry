@@ -1,0 +1,13 @@
+{% autoescape off %}
+
+Estimado/a {{ user.name }}, muchas gracias por confiar en nosotros.
+
+Este es tu numero de pedido: {{ order.order_note }}
+
+Estos son los productos:
+{% for items in items %}
+Nombre: {{ items.product.product_name }}||cantidad: {{ items.quantity }} ||precio: {{ items.product.price }}
+{% endfor %}
+
+Total de tu orden: {{ order.order_total }}
+{% endautoescape %}
