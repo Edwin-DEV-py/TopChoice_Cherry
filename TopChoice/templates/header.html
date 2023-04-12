@@ -40,6 +40,7 @@
                 {% else %}
                   {% if user.employe_roll or user.is_admin %}
                     <a href="{% url 'inventary' %}">inventario</a>
+                    <a href="{% url 'inventary_user' %}">Usuarios</a>
                     {% if user.is_admin %}
                     <button class="btn_headers">
                       <a href="{% url 'profile' %}" class="title text-muted">{{ user.name }}</a>

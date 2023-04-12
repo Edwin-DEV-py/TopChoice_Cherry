@@ -4,6 +4,7 @@ from .forms import *
 from .models import *
 import datetime
 import json
+import math
 
 def payment(request):
     
@@ -49,7 +50,7 @@ def order(request,total=0,quantity = 0):
     elif request.user.is_authenticated:
         final = total
     
-    iva = (5*total)/100
+    iva = math.trunc((5*total)/100)
     final = final + iva
     dolares = round(final/4500,2)
     

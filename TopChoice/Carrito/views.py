@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from Productos.models import *
 from .models import *
 from django.contrib.auth.decorators import login_required
+import math
 
 #pagina 404 personalizada
 def custom_404(request, exception):
@@ -78,7 +79,7 @@ def shopping_cart(request, total=0, quantity=0, items=None):
         elif request.user.is_authenticated:
             final = total
     
-        iva = (5*total)/100
+        iva = math.trunc((5*total)/100)
         final = final + iva
     except ObjectDoesNotExist:
         pass
@@ -115,7 +116,7 @@ def shipping_address(request,total=0, quantity=0, items=None):
         elif request.user.is_authenticated:
             final = total
     
-        iva = (5*total)/100
+        iva = math.trunc((5*total)/100)
         final = final + iva
     except ObjectDoesNotExist:
         pass

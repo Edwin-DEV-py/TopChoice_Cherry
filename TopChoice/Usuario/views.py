@@ -3,7 +3,7 @@ from .forms import *
 from Carrito.views import _cart_id
 from Carrito.models import *
 from django.contrib import messages,auth
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -11,6 +11,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.conf import settings
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 # Create your views here.
 
@@ -187,3 +188,23 @@ def restart_password(request):
         
     else:
         return render(request,'user/reiniciar.html')
+    
+    
+#lista de usuario para compartir
+@login_required
+@user_passes_test(lambda user: user.employe_roll or user.is_admin,login_url='login')
+def inventary_user(request):
+    users = User.objects.all()
+    pagination = Paginator(users,40)
+    page = request.GET.get('page',1)
+    page_x_user = pagination.get_page(page)
+    num_pages = pagination.num_pages
+    start = max(1, int(page)-2)
+    end = min(num_pages,int(page)+2)
+    if start == 1:
+        end = min(5, num_pages)
+    elif end == num_pages:
+        start = max(num_pages - 4,1)
+    page_range = range(start,end+1)
+    context = {'users':page_x_user,'page_range':page_range}
+    return render(request,'administracion/inventario_user.html',context)

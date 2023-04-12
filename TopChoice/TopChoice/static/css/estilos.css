@@ -4,15 +4,15 @@
 
 .barra_busqueda{
     border-radius: 50px;
-    border-color: #f79db8;
-    background:#f79db8;
+    border-color: #DA406E !important;
+
 }
 .barra_busqueda::placeholder{
     color:white;
 }
 .span_busqueda{
     color: white;
-    background: #DA406E;
+    background: #DA406E !important;
     cursor: pointer;
     border:none;
 }
