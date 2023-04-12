@@ -12,6 +12,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+import xlwt
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -222,3 +224,32 @@ def inventary_user(request):
     page_range = range(start,end+1)
     context = {'users':page_x_user,'page_range':page_range}
     return render(request,'administracion/inventario_user.html',context)
+
+@login_required
+@user_passes_test(lambda user: user.employe_roll or user.is_admin,login_url='login')
+def excel(request):
+    users = User.objects.all()
+    
+    book = xlwt.Workbook(encoding='utf-8')
+    sheet = book.add_sheet('Productos')
+    
+    sheet.write(0,0,'Nombre')
+    sheet.write(0,1,'Valido')
+    sheet.write(0,2,'Correo')
+    sheet.write(0,3,'Telefono')
+    
+    row = 1
+    
+    for user in users:
+        sheet.write(row,0,user.name)
+        sheet.write(row,1,user.is_active)
+        sheet.write(row,2,user.email)
+        sheet.write(row,3,user.phonenumber)
+        row +=1
+        
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="usuarios.xls"'
+    
+    book.save(response)
+    
+    return response
