@@ -225,6 +225,8 @@ def inventary_user(request):
     context = {'users':page_x_user,'page_range':page_range}
     return render(request,'administracion/inventario_user.html',context)
 
+
+#generar excel
 @login_required
 @user_passes_test(lambda user: user.employe_roll or user.is_admin,login_url='login')
 def excel(request):

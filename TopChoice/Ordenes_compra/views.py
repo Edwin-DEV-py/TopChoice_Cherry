@@ -5,6 +5,7 @@ from .models import *
 import datetime
 import json
 import math
+from Productos.models import *
 
 def payment(request):
     
@@ -39,6 +40,14 @@ def payment(request):
         product.product_price = item.product.price
         product.ordered = True
         product.save()
+        
+        #le quitamos stock al producto
+        product_stock = Products.objects.get(product_id=item.product.product_id)
+        product_stock.stock -= item.quantity
+        product_stock.save()
+        
+        #eliminamos el carrito de compra
+        Cart_item.objects.filter(user=request.user).delete()
         
     return render(request,'tienda/pagos.html')
 
