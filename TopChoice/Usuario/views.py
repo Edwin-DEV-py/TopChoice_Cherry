@@ -117,6 +117,19 @@ def logout(request):
 def profile(request):
     return render(request,'user/perfil.html')
 
+@login_required(login_url='login')
+def edit_profile(request,id):
+    perfil= User.objects.get(id=id)
+    if request.method == 'GET':
+        form = EditForm(instance=perfil)
+        contesto = {'form':form,'perfil':perfil}
+    else:
+        form = EditForm(request.POST, instance=perfil)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    return render(request, 'user/editar_perfil.html', contesto)
+
 #funcion para el envio del correo para recuperar contrasena
 def forgot(request):
     if request.method == 'POST':

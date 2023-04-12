@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head%}
+    <title>Recuperar</title>
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+<div class="mx-auto" style="max-width: 380px; margin-top:100px; border: 1px solid rgb(214, 213, 213); padding: 20px; border-radius: 10px;">
+    <div class="card-body text-center">
+        <h4 class="card-title mb-4">Editar perfil</h4>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Enviar  </button>
+            </div> <!-- form-group// -->
+
+        </form>
+        </div> <!-- card-body.// -->
+</div>
+{% endblock %}

@@ -11,4 +11,5 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/',views.activate,name='activate'),
     path('validation_user/<uidb64>/<token>/',views.validation_user,name='validation_user'),
     path('inventario_user.html',views.inventary_user,name='inventary_user'),
+    path('edit_profile/<int:id>/',views.edit_profile,name='edit_profile'),
 ]
