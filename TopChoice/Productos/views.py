@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import *
 from django.db.models import F
+from django.db import connection
 
 #muestra los productos ya sea todos o filtrados, con una paginacion para evitar sobrecargar la DB
 def store(request, category_slug=None):
@@ -83,9 +84,10 @@ def search(request):
     
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
+        products = None
         #obtenemos el conjunto de productos que coincidan con lo escrito
         if keyword:
-            products = Products.objects.order_by('product_id').filter(Q(product_name__icontains=keyword))#aqui esta el query, la | es un OR
+            products = Products.objects.order_by('product_id').filter(Q(product_name__icontains=keyword))
             count = products.count()
             
     context = {
