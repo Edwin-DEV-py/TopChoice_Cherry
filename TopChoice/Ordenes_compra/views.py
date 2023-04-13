@@ -9,6 +9,7 @@ from Productos.models import *
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.http import JsonResponse
 
 def payment(request):
     
@@ -66,7 +67,14 @@ def payment(request):
     send_mail.from_email = False
     send_mail.send()
     
-    return render(request,'tienda/pagos.html')
+    data = {
+        'order_note':order.order_note,
+        'transID':payment.payment_id
+    }
+    
+    return JsonResponse(data)
+
+    
 
 # Crear orden
 def order(request,total=0,quantity = 0):
@@ -75,6 +83,7 @@ def order(request,total=0,quantity = 0):
     
     iva = 0
     final = 0
+    subfinal = 0
     
     items = Cart_item.objects.filter(user=user)
     count = items.count()
@@ -86,13 +95,16 @@ def order(request,total=0,quantity = 0):
         quantity += item.quantity
         
     if request.user.is_authenticated and request.user.is_admin:
-            discount = request.user.discount/100
-            final = total*(1-discount)   
+        iva = math.trunc((5*total)/100)
+        discount = request.user.discount/100
+        subfinal = total+iva
+        final = subfinal*(1-discount)   
     elif request.user.is_authenticated:
-        final = total
+        iva = math.trunc((5*total)/100)
+        final = total + iva
     
-    iva = math.trunc((5*total)/100)
-    final = final + iva
+
+    final = final
     dolares = round(final/4500,2)
     
     if request.method == 'POST':
@@ -141,4 +153,30 @@ def order(request,total=0,quantity = 0):
     else:
         return redirect('shipping_address')
 
-
+#orden completada
+def complete(request):
+    note = request.GET.get('order_note')
+    transID = request.GET.get('payment_id')
+    
+    try:
+        order = Order.objects.get(order_note=note, is_ordered=True)
+        products = Product_order.objects.filter(order_id=order.order_id)
+        
+        subtotal = 0
+        for i in products:
+            subtotal += i.product_price*i.quantity
+            
+        payment = Payment.objects.get(payment_id=transID)
+        
+        context = {
+            'order': order,
+            'products':products,
+            'note':note,
+            'transID': payment.payment_id,
+            'payment': payment,
+            'subtotal': subtotal
+        }
+        
+        return render(request,'tienda/completado.html',context)
+    except(Payment.DoesNotExist, Order.DoesNotExist):
+        return redirect('header')
