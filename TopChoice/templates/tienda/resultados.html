@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head%}
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+{% for products in products %}
+
+<p>{{ products.product_name }}</p>
+
+{% endfor %}
+{% endblock %}

@@ -106,6 +106,9 @@
                     <dt>Total:</dt>
                     <dd class="text-right text-dark b"><strong>${{ final }}</strong></dd>
                 </dl>
+                {% if request.user.is_authenticated and request.user.is_admin %}
+                <p>Descuento: {{ user.discount }}%</p>
+                {% endif %}
                 <hr>
                 <a href="./tienda.html" class="btn btn-light btn-block">Elegir mas productos</a>
                 <a href="{% url 'shipping_address' %}" class="btn btn-primary btn-block boton_pagar" id="boton_pagar"> Pagar </a>

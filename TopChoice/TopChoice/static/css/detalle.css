@@ -55,3 +55,40 @@
 .ref{
     color: rgb(198, 200, 202);
 }
+
+
+.rate > input{
+    display:none
+}
+
+.rate {
+    display: inline-block;
+    border:0;
+}
+
+.rate > label {
+    float: right;
+}
+
+.rate > label:before {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-family: FontAwesome;
+    content: "\f005";
+    margin: 0;
+    padding: 0.3rem .2rem;
+    cursor: pointer;
+}
+
+input:checked ~ label, label:hover ~label{
+    color: #fcbc27;
+}
+
+input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
+label:hover ~ inpput:checked ~ label {
+    color: #cc9000;
+}
+
+.rating-star i{
+    color: #fcbc27 !important;
+}

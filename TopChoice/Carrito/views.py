@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from Productos.models import *
 from .models import *
 from django.contrib.auth.decorators import login_required
+import math
 
 #pagina 404 personalizada
 def custom_404(request, exception):
@@ -59,6 +60,7 @@ def delete(request, product_id):
 def shopping_cart(request, total=0, quantity=0, items=None):
     iva = 0
     final = 0
+    subfinal=0
     #mostramos los productos si existen
     try:
         
@@ -72,8 +74,16 @@ def shopping_cart(request, total=0, quantity=0, items=None):
             total += (item.product.price*item.quantity)
             quantity += item.quantity
             
-        iva = (5*total)/100
-        final = total + iva
+        if request.user.is_authenticated and request.user.is_admin:
+            iva = math.trunc((5*total)/100)
+            discount = request.user.discount/100
+            subfinal = total+iva
+            final = subfinal*(1-discount)   
+        elif request.user.is_authenticated:
+            iva = math.trunc((5*total)/100)
+            final = total + iva
+    
+        final = final
     except ObjectDoesNotExist:
         pass
     
@@ -91,6 +101,7 @@ def shopping_cart(request, total=0, quantity=0, items=None):
 def shipping_address(request,total=0, quantity=0, items=None):
     iva=0
     final=0
+    subfinal=0
     try:
         
         if request.user.is_authenticated:
@@ -103,8 +114,16 @@ def shipping_address(request,total=0, quantity=0, items=None):
             total += (item.product.price*item.quantity)
             quantity += item.quantity
             
-        iva = (5*total)/100
-        final = total + iva
+        if request.user.is_authenticated and request.user.is_admin:
+            iva = math.trunc((5*total)/100)
+            discount = request.user.discount/100
+            subfinal = total+iva
+            final = subfinal*(1-discount)   
+        elif request.user.is_authenticated:
+            iva = math.trunc((5*total)/100)
+            final = total + iva
+    
+        final = final
     except ObjectDoesNotExist:
         pass
     

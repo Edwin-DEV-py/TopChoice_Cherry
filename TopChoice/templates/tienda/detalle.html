@@ -3,6 +3,7 @@
 {% block head%}
     <link rel="stylesheet" href="{% static 'css/detalle.css' %}">
     <title>Detalle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 {% block content %}
 {% include 'header.html' %}
@@ -23,21 +24,16 @@
                 <div class="row">
                   <p class="ref">Ref:{{ product_information.product_id }}</p>
                     <div class="item-option-select">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                        </svg>
+                      <div class="rating-star">
+                        <span> {{ product_information.averageRating }}</span>
+                        <span>
+                              <i class="fa fa-star{% if product_information.averageRating < 0.5 %}-o{% elif product_information.averageRating >= 0.5 and single_product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+                              <i class="fa fa-star{% if product_information.averageRating < 1.5 %}-o{% elif product_information.averageRating >= 1.5 and single_product.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+                              <i class="fa fa-star{% if product_information.averageRating < 2.5 %}-o{% elif product_information.averageRating >= 2.5 and single_product.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+                              <i class="fa fa-star{% if product_information.averageRating < 3.5 %}-o{% elif product_information.averageRating >= 3.5 and single_product.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+                              <i class="fa fa-star{% if product_information.averageRating < 4.5 %}-o{% elif product_information.averageRating >= 4.5 and single_product.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+                        </span>
+                    </div>
                         <div class="col" data-toggle="buttons">
                           <br>
                           <h5>Descripcion</h5>
@@ -68,6 +64,101 @@
     <br>
     <br>
 </div>
+
+
+<div class="container">
+  <div class="row" style="max-width: 800px;">
+    <div class="col-8">
+      <h3>Comentarios</h3>
+      <span> {{ product_information.countRating }} Comentarios </span>
+    </div>
+    <div class="col-4 text-center">
+      <!--Modal de agregar mi comentario-->
+{% if user.is_authenticated %}
+<button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Comentar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Escribe tu comentario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'comment' product_information.product_id %}" method="post">
+          {% csrf_token %}
+          <div class="">
+            <label for="">Como calificarias este producto?</label>
+            <br>
+            <div class="rate">
+                <input type="radio" name="rating" value="5" id="rating10"><label for="rating10" title="5"></label>
+                <input type="radio" name="rating" value="4" id="rating8"><label for="rating8" title="4"></label>
+                <input type="radio" name="rating" value="3" id="rating6"><label for="rating6" title="3"></label>
+                <input type="radio" name="rating" value="2" id="rating4"><label for="rating4" title="2"></label>
+                <input type="radio" name="rating" value="1" id="rating2"><label for="rating2" title="1"></label>
+            </div>
+            <br>
+
+            Titulo de comentario:
+            <input type="text" class="form-control" name="title" value="">
+            <br>
+
+            Comentario:
+            <textarea name="comment" rows="4" class="form-control" ></textarea>
+            <br>
+            {% if ordered %}
+            <input type="submit" name="" value="Enviar Comentario" class="btn btn-primary">
+            {% else %}
+            <p>Debes comprar este producto antes de comentar</p>
+            {% endif %}
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+    </div>
+  </div>
+  <br>
+<!--Comentarios-->
+  {% for comment in comments %}
+  <div class="row rounded" style="max-width: 800px; background: rgb(240, 240, 240);">
+    <div class="row">
+      <div class="col-8 float-left">
+        {{ comment.user.name }}
+      </div>
+      <div class="col-4 text-center">
+        {{ comment.date_created }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>{{ comment.comment }}</p>
+      </div>
+      <div class="col-4 text-center">
+        <div class="rating-star">
+          <span>
+                <i class="fa fa-star{% if comment.rating == 0.5 %}-half-o{% elif comment.rating < 1 %}-o {% endif %}" aria-hidden="true"></i>
+                <i class="fa fa-star{% if comment.rating == 1.5 %}-half-o{% elif comment.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
+                <i class="fa fa-star{% if comment.rating == 2.5 %}-half-o{% elif comment.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
+                <i class="fa fa-star{% if comment.rating == 3.5 %}-half-o{% elif comment.rating < 4 %}-o {% endif %}" aria-hidden="true"></i>
+                <i class="fa fa-star{% if comment.rating == 4.5 %}-half-o{% elif comment.rating < 5 %}-o {% endif %}" aria-hidden="true"></i>
+          </span>
+      </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  {% endfor %}
+</div>
+<br>
     <!--Aqui se muestra los productos relacionados-->
     <div class="container-flex text-center">
       <h2>Productos relacionados</h2>

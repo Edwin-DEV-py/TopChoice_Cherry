@@ -153,7 +153,7 @@
     //ignorar este error, solo estamos capturando la variable dolar
     const amount = "{{ dolares }}"
     const url = "{% url 'payment' %}"
-
+    const redirect_url = "{% url 'complete' %}"
     const csrftoken = Cookie('csrftoken'); //obtenemos las cookies de la transaccion
     const orderID = "{{ order.order_note }}"
     const payment_method = 'Paypal'
@@ -192,7 +192,9 @@
                         }),
                     })
                     .then(response => response.json())
-                    .then(data => console.log(data))
+                    .then(data => {
+                        window.location.href = redirect_url + '?order_note=' + data.order_note + '&payment_id=' + data.transID;
+                    })
                 }
 
                 // Replace the above to show a success message within this page, e.g.

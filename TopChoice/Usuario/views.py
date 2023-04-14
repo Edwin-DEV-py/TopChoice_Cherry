@@ -3,7 +3,7 @@ from .forms import *
 from Carrito.views import _cart_id
 from Carrito.models import *
 from django.contrib import messages,auth
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -11,6 +11,9 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.conf import settings
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+import xlwt
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -116,6 +119,20 @@ def logout(request):
 def profile(request):
     return render(request,'user/perfil.html')
 
+#editar perfil
+@login_required(login_url='login')
+def edit_profile(request,id):
+    perfil= User.objects.get(id=id)
+    if request.method == 'GET':
+        form = EditForm(instance=perfil)
+        contesto = {'form':form,'perfil':perfil}
+    else:
+        form = EditForm(request.POST, instance=perfil)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    return render(request, 'user/editar_perfil.html', contesto)
+
 #funcion para el envio del correo para recuperar contrasena
 def forgot(request):
     if request.method == 'POST':
@@ -187,3 +204,54 @@ def restart_password(request):
         
     else:
         return render(request,'user/reiniciar.html')
+    
+    
+#lista de usuario para compartir
+@login_required
+@user_passes_test(lambda user: user.employe_roll or user.is_admin,login_url='login')
+def inventary_user(request):
+    users = User.objects.all()
+    pagination = Paginator(users,40)
+    page = request.GET.get('page',1)
+    page_x_user = pagination.get_page(page)
+    num_pages = pagination.num_pages
+    start = max(1, int(page)-2)
+    end = min(num_pages,int(page)+2)
+    if start == 1:
+        end = min(5, num_pages)
+    elif end == num_pages:
+        start = max(num_pages - 4,1)
+    page_range = range(start,end+1)
+    context = {'users':page_x_user,'page_range':page_range}
+    return render(request,'administracion/inventario_user.html',context)
+
+
+#generar excel
+@login_required
+@user_passes_test(lambda user: user.employe_roll or user.is_admin,login_url='login')
+def excel(request):
+    users = User.objects.all()
+    
+    book = xlwt.Workbook(encoding='utf-8')
+    sheet = book.add_sheet('Productos')
+    
+    sheet.write(0,0,'Nombre')
+    sheet.write(0,1,'Valido')
+    sheet.write(0,2,'Correo')
+    sheet.write(0,3,'Telefono')
+    
+    row = 1
+    
+    for user in users:
+        sheet.write(row,0,user.name)
+        sheet.write(row,1,user.is_active)
+        sheet.write(row,2,user.email)
+        sheet.write(row,3,user.phonenumber)
+        row +=1
+        
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="usuarios.xls"'
+    
+    book.save(response)
+    
+    return response

@@ -47,6 +47,7 @@ class User(AbstractBaseUser):
     date = models.DateField(auto_now=False,null=True)
     accept = models.BooleanField(default=False)
     employe_roll = models.BooleanField(default=False)
+    discount = models.DecimalField(max_digits=5,decimal_places=2,default=15)
     
     #atributos de django
     date_joined = models.DateTimeField(auto_now_add=True)

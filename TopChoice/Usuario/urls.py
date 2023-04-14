@@ -9,5 +9,8 @@ urlpatterns = [
     path('forgot/',views.forgot,name='forgot'),
     path('restart_password/',views.restart_password,name='restart_password'),
     path('activate/<uidb64>/<token>/',views.activate,name='activate'),
-    path('validation_user/<uidb64>/<token>/',views.validation_user,name='validation_user')
+    path('validation_user/<uidb64>/<token>/',views.validation_user,name='validation_user'),
+    path('inventario_user.html',views.inventary_user,name='inventary_user'),
+    path('edit_profile/<int:id>/',views.edit_profile,name='edit_profile'),
+    path('excel/', views.excel, name='excel'),
 ]

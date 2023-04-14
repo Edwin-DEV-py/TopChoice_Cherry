@@ -54,3 +54,8 @@ class RegisterForm(forms.ModelForm):
             raise ValidationError("Las contraseñas no coinciden")
         
         return cleaned_data
+    
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['name','email','phonenumber','addres','id']
