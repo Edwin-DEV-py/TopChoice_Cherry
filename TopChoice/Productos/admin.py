@@ -8,3 +8,4 @@ class Product_admin(admin.ModelAdmin):
     list_display = ('product_name','price','stock','is_available','category','subcategory')
 
 admin.site.register(Products,Product_admin)  
+admin.site.register(Comments)

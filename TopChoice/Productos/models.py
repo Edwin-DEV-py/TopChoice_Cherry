@@ -1,7 +1,7 @@
 from django.db import models
 from Categorias.models import Category,SubCategory
 from django.urls import reverse
-
+from Usuario.models import *
 
 #modelo de los productos
 class Products(models.Model):
@@ -25,3 +25,17 @@ class Products(models.Model):
     
     def __str__(self):
         return self.product_name
+
+class Comments(models.Model):
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    title = models.CharField(max_length=100,blank=True)
+    comment = models.CharField(max_length=255,blank=True)
+    rating = models.IntegerField()
+    ip = models.CharField(max_length=20,blank=True)
+    is_available = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title

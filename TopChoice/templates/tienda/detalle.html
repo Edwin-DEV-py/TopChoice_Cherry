@@ -3,6 +3,7 @@
 {% block head%}
     <link rel="stylesheet" href="{% static 'css/detalle.css' %}">
     <title>Detalle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 {% block content %}
 {% include 'header.html' %}
@@ -68,6 +69,80 @@
     <br>
     <br>
 </div>
+
+<!--Comentarios-->
+<div class="container">
+  <div class="row" style="max-width: 800px;">
+    <div class="col-8">
+      <h3>Comentarios</h3>
+    </div>
+    <div class="col-4 text-center">
+      <!--Modal de agregar mi comentario-->
+{% if user.is_authenticated %}
+<button type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Comentar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Escribe tu comentario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="">
+            <label for="">Como calificarias este producto?</label>
+            <br>
+            <div class="rate">
+                <input type="radio" name="rating" value="5" id="rating10"><label for="rating10" title="5"></label>
+                <input type="radio" name="rating" value="4" id="rating8"><label for="rating8" title="4"></label>
+                <input type="radio" name="rating" value="3" id="rating6"><label for="rating6" title="3"></label>
+                <input type="radio" name="rating" value="2" id="rating4"><label for="rating4" title="2"></label>
+                <input type="radio" name="rating" value="1" id="rating2"><label for="rating2" title="1"></label>
+            </div>
+            <br>
+
+            Titulo de comentario:
+            <input type="text" class="form-control" name="subject" value="">
+            <br>
+
+            Comentario:
+            <textarea name="review" rows="4" class="form-control" ></textarea>
+            <br>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+    </div>
+  </div>
+  <br>
+  <div class="row rounded" style="max-width: 800px; background: rgb(240, 240, 240);">
+    <div class="row">
+      <div class="col-8 float-left">
+        Nombre
+      </div>
+      <div class="col-4 text-center">
+        Fecha
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>Comentario</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
     <!--Aqui se muestra los productos relacionados-->
     <div class="container-flex text-center">
       <h2>Productos relacionados</h2>
