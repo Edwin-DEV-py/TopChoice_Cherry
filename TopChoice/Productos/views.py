@@ -71,9 +71,12 @@ def product_information(request,category_slug,product_slug):
     except Exception as e:
         raise e
     
-    try:
-        ordered = Product_order.objects.filter(user=request.user, product_id=product_information.product_id).exists()
-    except Product_order.DoesNotExist:
+    if request.user.is_authenticated:
+        try:
+            ordered = Product_order.objects.filter(user=request.user, product_id=product_information.product_id).exists()
+        except Product_order.DoesNotExist:
+            ordered = None
+    else:
         ordered = None
         
     comments = Comments.objects.filter(product_id=product_information.product_id, is_available=True)
