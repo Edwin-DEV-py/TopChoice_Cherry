@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import *
 from django.db.models import F
 from django.db import connection
+from Ordenes_compra.models import *
 
 #muestra los productos ya sea todos o filtrados, con una paginacion para evitar sobrecargar la DB
 def store(request, category_slug=None):
@@ -70,11 +71,20 @@ def product_information(request,category_slug,product_slug):
     except Exception as e:
         raise e
     
+    try:
+        ordered = Product_order.objects.filter(user=request.user, product_id=product_information.product_id).exists()
+    except Product_order.DoesNotExist:
+        ordered = None
+        
+    comments = Comments.objects.filter(product_id=product_information.product_id, is_available=True)
+    
     context = {
         'product_information':product_information,
         'product':product,
         'product2':product2,
-        'cart':cart
+        'cart':cart,
+        'ordered':ordered,
+        'comments':comments
     }
     
     return render(request,'tienda/detalle.html',context)
@@ -130,3 +140,27 @@ def edit_inventary(request,product_id):
             form.save()
             return redirect('inventary')
     return render(request,'administracion/editar_productos.html',context)
+
+#registrar comentario
+def comment(request,product_id):
+    url = request.META.get('HTTP_REFERER')
+    
+    #capturar valores
+    if request.method == 'POST':
+        try:
+            comment = Comments.objects.get(user=request.user, product_id=product_id)
+            form = Comment_Form(request.POST,instance=comment)
+            form.save()
+            return redirect(url)
+        except Comments.DoesNotExist:
+            form = Comment_Form(request.POST)
+            if form.is_valid():
+                data = Comments()
+                data.title = form.cleaned_data['title']
+                data.comment = form.cleaned_data['comment']
+                data.rating = form.cleaned_data['rating']
+                data.ip = request.META.get('REMOTE_ADDR')
+                data.product_id = product_id
+                data.user_id = request.user
+                data.save()
+                return redirect(url)

@@ -2,6 +2,7 @@ from django.db import models
 from Categorias.models import Category,SubCategory
 from django.urls import reverse
 from Usuario.models import *
+from django.db.models import Avg, Count
 
 #modelo de los productos
 class Products(models.Model):
@@ -25,6 +26,21 @@ class Products(models.Model):
     
     def __str__(self):
         return self.product_name
+    
+    def averageRating(self):
+        comments = Comments.objects.filter(product=self, is_available=True).aggregate(average=Avg('rating'))
+        avg=0
+        if comments['average'] is not None:
+            avg = float(comments['average'])
+        return avg
+    
+    def countRating(self):
+        comments = Comments.objects.filter(product=self, is_available=True).aggregate(count=Count('id'))
+        count = 0
+        if comments['count'] is not None:
+            count = int(comments['count'])
+            
+        return count
 
 class Comments(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
