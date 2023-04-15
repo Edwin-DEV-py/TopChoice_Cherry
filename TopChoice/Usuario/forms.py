@@ -62,4 +62,4 @@ class RegisterForm(forms.ModelForm):
 class EditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['name','email','phonenumber','addres','id']
+        fields = ['name','email','phonenumber','addres','id','img']

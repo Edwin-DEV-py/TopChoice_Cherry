@@ -14,6 +14,7 @@ from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 import xlwt
 from django.http import HttpResponse
+from Ordenes_compra.models import *
 
 # Create your views here.
 
@@ -257,3 +258,11 @@ def excel(request):
     book.save(response)
     
     return response
+
+#mostrar mis ordenes
+def my_orders(request):
+    orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-create_date')
+    context = {
+        'orders':orders
+    }
+    return render(request,'user/ordenes.html',context)

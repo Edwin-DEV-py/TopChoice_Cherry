@@ -1,3 +1,7 @@
 .perfil_usuario{
     background: rgb(236, 234, 234);
 }
+.activo{
+    font-weight: bold;
+    color: rgb(128, 247, 227) !important;
+}

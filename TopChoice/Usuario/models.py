@@ -48,6 +48,7 @@ class User(AbstractBaseUser):
     accept = models.BooleanField(default=False)
     employe_roll = models.BooleanField(default=False)
     discount = models.DecimalField(max_digits=5,decimal_places=2,default=15)
+    img = models.ImageField(upload_to='profile_img',blank=True)
     
     #atributos de django
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -78,6 +79,7 @@ departaments = [
     
 ]   
 
+#por ahora no trabajaremos con el perfil
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address_1 = models.CharField(max_length=100,blank=True)
@@ -85,9 +87,10 @@ class Profile(models.Model):
     departament = models.CharField(max_length=100,choices=departaments,blank=True)
     city = models.CharField(max_length=100,blank=True)
     zone = models.CharField(max_length=100,blank=True)
+    img = models.ImageField(upload_to='profile',blank=True)
     
     def __str__(self):
-        return self.user.first_name
+        return self.user.name
     
     def address(self):
         return f'{self.city} {self.address_1} {self.address_2}'
