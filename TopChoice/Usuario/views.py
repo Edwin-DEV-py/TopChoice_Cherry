@@ -29,9 +29,11 @@ def register(request):
             addres = form.cleaned_data['addres']
             phonenumber = form.cleaned_data['phonenumber']
             date = form.cleaned_data['date']
+            accept = form.cleaned_data['accept']
             password = form.cleaned_data['password']
             user = User.objects.create_user(name=name,email=email,id=id,addres=addres,phonenumber=phonenumber,password=password)
             user.date = date
+            user.accept = accept
             user.save()
             
             #verificamos el email

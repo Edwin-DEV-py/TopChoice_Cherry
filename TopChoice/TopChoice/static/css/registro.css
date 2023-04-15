@@ -25,6 +25,11 @@ a{
     color: white;
 }
 
+.check{
+    position: relative;
+    display: flex;
+}
+
 
 .btn1{
     background: #c72ff1;

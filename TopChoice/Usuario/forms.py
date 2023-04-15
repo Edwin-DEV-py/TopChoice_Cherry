@@ -33,6 +33,10 @@ class RegisterForm(forms.ModelForm):
         'class':'form-control bg-transparent border-0',
         'type':'date'
     }))
+    accept = forms.BooleanField(required=True, widget=forms.CheckboxInput(attrs={
+        'class':'check',
+        'id':'chec'
+    }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={
         'placeholder':'Contraseña',
         'class':'form-control bg-transparent border-0',
@@ -43,7 +47,7 @@ class RegisterForm(forms.ModelForm):
     }))
     class Meta:
         model = User
-        fields = ['name','email','id','phonenumber','addres','date','password']
+        fields = ['name','email','id','phonenumber','addres','date','password','accept']
         
     def clean(self):
         cleaned_data = super(RegisterForm, self).clean() #accedemos a los datos del form
