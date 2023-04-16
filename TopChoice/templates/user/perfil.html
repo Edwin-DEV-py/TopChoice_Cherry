@@ -19,7 +19,11 @@
             <br>
             <div class="row">
                 <div class="col text-center">
-                    imagen
+                    {% if user.img.url != None %}
+                    <img src="{{ user.img.url }}" class="img-fluid" alt="" style="width: 300px; height: 300px; border-radius: 50%;">
+                    {% else %}
+                    <img src="{% static 'img/perfil2.webp' %}" class="img-fluid" alt="" style="width: 300px; height: 300px; border-radius: 50%;">
+                    {% endif %}
                 </div>
                 <div class="col">
                     <div class="row">

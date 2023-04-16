@@ -48,7 +48,7 @@ class User(AbstractBaseUser):
     accept = models.BooleanField(default=False)
     employe_roll = models.BooleanField(default=False)
     discount = models.DecimalField(max_digits=5,decimal_places=2,default=15)
-    img = models.ImageField(upload_to='profile_img',blank=True)
+    img = models.ImageField(upload_to='profile_img/',blank=True,default='../TopChoice/static/img/perfil2.webp')
     
     #atributos de django
     date_joined = models.DateTimeField(auto_now_add=True)

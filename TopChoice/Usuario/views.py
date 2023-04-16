@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import *
 from Carrito.views import _cart_id
 from Carrito.models import *
@@ -126,14 +126,15 @@ def profile(request):
 @login_required(login_url='login')
 def edit_profile(request,id):
     perfil= User.objects.get(id=id)
-    if request.method == 'GET':
-        form = EditForm(instance=perfil)
-        contesto = {'form':form,'perfil':perfil}
-    else:
-        form = EditForm(request.POST, instance=perfil)
+    if request.method == 'POST':
+        form = EditForm(request.POST,request.FILES,instance=perfil)
         if form.is_valid():
+            img  = form.cleaned_data['img']
             form.save()
             return redirect('profile')
+    else:
+        form = EditForm(instance=request.user)
+    contesto = {'form':form,'perfil':perfil}
     return render(request, 'user/editar_perfil.html', contesto)
 
 #funcion para el envio del correo para recuperar contrasena

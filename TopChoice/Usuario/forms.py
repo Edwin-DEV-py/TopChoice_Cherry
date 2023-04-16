@@ -60,6 +60,21 @@ class RegisterForm(forms.ModelForm):
         return cleaned_data
     
 class EditForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'class':'form-control',
+        'id':'Input',
+        'type':'text'
+    }))
+    phonenumber = forms.CharField(widget=forms.TextInput(attrs={
+        'class':'form-control',
+        'id':'Input2',
+        'type':'text'
+    }))
+    addres = forms.CharField(widget=forms.TextInput(attrs={
+        'class':'form-control',
+        'id':'Input3',
+        'type':'text'
+    }))
     class Meta:
         model = User
-        fields = ['name','email','phonenumber','addres','id','img']
+        fields = ['name','phonenumber','addres','img']

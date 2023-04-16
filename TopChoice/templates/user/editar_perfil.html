@@ -6,11 +6,26 @@
 {% block content %}
 {% include 'header.html' %}
 <div class="mx-auto" style="max-width: 380px; margin-top:100px; border: 1px solid rgb(214, 213, 213); padding: 20px; border-radius: 10px;">
-    <div class="card-body text-center">
+    <div class="card-body">
         <h4 class="card-title mb-4">Editar perfil</h4>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data" class="row g-3">
             {% csrf_token %}
-            {{ form.as_p }}
+            <div class="col-md-12">
+                <label for="input" class="form-label">Nombre:</label>
+                {{ form.name }}
+            </div>
+            <div class="col-md-12">
+                <label for="input2" class="form-label">Telefono:</label>
+                {{ form.phonenumber }}
+            </div>
+            <div class="col-md-12">
+                <label for="input3" class="form-label">Dirrecion:</label>
+                {{ form.addres }}
+            </div>
+            <div class="col-md-12">
+                <label for="input4" class="form-label">Imagen:</label>
+                <input type="file" class="form-control" id="input4" name="img" accept="image/*">
+            </div>
             <br>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block"> Enviar  </button>
@@ -20,3 +35,12 @@
         </div> <!-- card-body.// -->
 </div>
 {% endblock %}
+
+<label for="name">Nombre:</label>
+            {{ form.name }}
+            <label for="phonenumber">Telefono:</label>
+            {{ form.phonenumber }}
+            <label for="name">Direccion:</label>
+            {{ form.addres }}
+            <label for="img">Imagen:</label>
+            {{ form.img }}

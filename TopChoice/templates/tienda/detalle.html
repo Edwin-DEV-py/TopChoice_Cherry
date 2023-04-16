@@ -129,10 +129,10 @@
   <br>
 <!--Comentarios-->
   {% for comment in comments %}
-  <div class="row rounded" style="max-width: 800px; background: rgb(240, 240, 240);">
+  <div class="row rounded" style="max-width: 800px; ">
     <div class="row">
       <div class="col-8 float-left">
-        {{ comment.user.name }}
+        <h5>{{ comment.user.name }}</h5>
       </div>
       <div class="col-4 text-center">
         {{ comment.date_created }}
@@ -154,6 +154,7 @@
       </div>
       </div>
     </div>
+    <hr>
   </div>
   <br>
   {% endfor %}
