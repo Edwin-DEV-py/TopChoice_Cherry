@@ -115,3 +115,8 @@ input::placeholder{
 .a_sesion{
     color: white;
 }
+
+.card3:hover{
+    color: var(--color-barra);
+    transform: scale(1.02);
+}
