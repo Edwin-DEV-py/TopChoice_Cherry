@@ -209,6 +209,31 @@ def restart_password(request):
     else:
         return render(request,'user/reiniciar.html')
     
+#cambiar contrasena
+@login_required(login_url='login')
+def change_password(request):
+    if request.method == 'POST':
+        old_password = request.POST['old_password']
+        new_password = request.POST['new_password']
+        confirm_pasword = request.POST['confirm_password']
+        
+        user = User.objects.get(email__exact=request.user.email)
+        
+        if new_password == confirm_pasword:
+            success = user.check_password(old_password)
+            if success:
+                user.set_password(new_password)
+                user.save()
+                
+                return redirect('change_password')
+            else:
+                messages.error(request,'Contrasena no valida')
+                return redirect('change_password')
+        else:
+            messages.error(request,'Las contrasenas no coinciden')
+            return redirect('change_password')
+                
+    return render(request,'user/cambiar.html')
     
 #lista de usuario para compartir
 @login_required
@@ -261,6 +286,7 @@ def excel(request):
     return response
 
 #mostrar mis ordenes
+@login_required(login_url='login')
 def my_orders(request):
     orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-create_date')
     context = {

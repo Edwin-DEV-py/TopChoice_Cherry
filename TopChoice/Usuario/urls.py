@@ -13,5 +13,6 @@ urlpatterns = [
     path('inventario_user.html',views.inventary_user,name='inventary_user'),
     path('edit_profile/<int:id>/',views.edit_profile,name='edit_profile'),
     path('excel/', views.excel, name='excel'),
-    path('my_orders/',views.my_orders,name='my_orders')
+    path('my_orders/',views.my_orders,name='my_orders'),
+    path('change_password/',views.change_password,name='change_password')
 ]
