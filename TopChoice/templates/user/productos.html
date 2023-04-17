@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head%}
+    <title>Mis ordenes</title>
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'header.html' %}
+<br>
+<div class="container">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row">
+            {% include 'user/barra.html' %}
+        </div> 
+    </div>
+    <br>
+    <div class="row">
+        <div class="col rounded ">
+            <br>
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio UND</th>
+                            <th scope="col">Precio Total</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for products in products %}
+                        <tr>
+                            <td>{{ products.order.order_note}}</td>
+                            <td><a href="{{ products.product.get_url }}">{{ products.product.product_name}} <img src="{{ products.product.product_image_stock.url }}" style="max-height: 50px;" class="img-sm" alt="Responsive image"></a></td>
+                            <td>{{ products.quantity}}</td>
+                            <td>${{products.product_price}} COP</td>
+                            <td>${{ products.sub_total }} COP</td>
+                            <td><a href="{% url 'add' products.product.product_id %}" class="btn btn-block boton_tienda">Volver a ordenar</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

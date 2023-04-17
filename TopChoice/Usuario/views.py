@@ -293,3 +293,30 @@ def my_orders(request):
         'orders':orders
     }
     return render(request,'user/ordenes.html',context)
+
+#mostrar lista de todos los productos comprados
+def products_shop(request):
+    products = Product_order.objects.all()
+    context = {
+        'products':products
+    }
+    
+    return render(request, 'user/productos.html',context)
+
+#agregar productos para volverlos a comprar
+@login_required(login_url='login')
+def re_add(request,product_id):
+    product = get_object_or_404(Products, product_id=product_id)
+    user = request.user
+    try:
+        item = Cart_item.objects.get(product=product,user=user)
+        item.quantity +=1
+        item.save()
+    except Cart_item.DoesNotExist:
+        item = Cart_item.objects.create(
+            product=product,
+            user=user,
+            quantity=1
+        )
+        return redirect('shopping_cart')
+    return redirect('shopping_cart')

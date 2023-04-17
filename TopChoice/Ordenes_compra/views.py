@@ -157,14 +157,16 @@ def order(request,total=0,quantity = 0):
 def complete(request):
     note = request.GET.get('order_note')
     transID = request.GET.get('payment_id')
-    
     try:
         order = Order.objects.get(order_note=note, is_ordered=True)
         products = Product_order.objects.filter(order_id=order.order_id)
         
+
         subtotal = 0
         for i in products:
             subtotal += i.product_price*i.quantity
+        
+        
             
         payment = Payment.objects.get(payment_id=transID)
         

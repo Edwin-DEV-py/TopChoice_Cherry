@@ -5,3 +5,11 @@
     font-weight: bold;
     color: rgb(128, 247, 227) !important;
 }
+
+.boton_tienda{
+    background: #E37DAF;
+}
+
+.boton_tienda:hover{
+    background: #d66a9e;
+}

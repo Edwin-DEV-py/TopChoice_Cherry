@@ -15,4 +15,6 @@ urlpatterns = [
     path('excel/', views.excel, name='excel'),
     path('my_orders/',views.my_orders,name='my_orders'),
     path('change_password/',views.change_password,name='change_password'),
+    path('my_products/',views.products_shop,name='my_products'),
+    path('re_add/<int:product_id>/',views.re_add,name='re_add')
 ]
