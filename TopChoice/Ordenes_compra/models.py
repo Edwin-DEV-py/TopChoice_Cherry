@@ -51,6 +51,9 @@ class Order(models.Model):
     def __str__(self):
         return self.user_name
     
+    def get_url(self): #devuelve una url para poder ver el detalle mas adelante
+        return reverse('orden_detail',args=[self.order_note])
+    
 class Product_order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     order = models.ForeignKey(Order,on_delete=models.CASCADE)

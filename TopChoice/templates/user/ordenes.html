@@ -32,7 +32,7 @@
                     <tbody>
                         {% for order in orders %}
                         <tr>
-                            <td>{{ order.order_note }}</td>
+                            <td><a href="{% url 'order_detail' order.order_note%}">{{ order.order_note }}</a></td>
                             <td>{{ order.name}}</td>
                             <td>{{ order.phonenumber}}</td>
                             <td>{{ order.address_1}}</td>

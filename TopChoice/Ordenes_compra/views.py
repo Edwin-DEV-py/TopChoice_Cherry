@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from Carrito.models import *
 from .forms import *
 from .models import *
@@ -180,3 +180,21 @@ def complete(request):
         return render(request,'tienda/completado.html',context)
     except(Payment.DoesNotExist, Order.DoesNotExist):
         return redirect('header')
+    
+#mostrar cada orden del historial
+def order_detail(request,order_note):
+    order = get_object_or_404(Order, order_note=order_note)
+    products = Product_order.objects.filter(order_id=order.order_id)
+        
+    subtotal = 0
+    for i in products:
+        subtotal += i.product_price*i.quantity
+        
+    context = {
+        'order':order,
+        'products':products,
+        'subtotal': subtotal
+    }
+    
+    return render(request, 'user/factura.html',context)
+    

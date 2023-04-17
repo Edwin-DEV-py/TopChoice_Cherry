@@ -16,7 +16,7 @@ def store(request, category_slug=None):
     
     categorys = None
     products = None
-    
+    form = filter(request.GET)
     #validamos que los poroductos sean desplegados en una categoria o esten mezclados
     if category_slug != None:
         categorys = get_object_or_404(Category,slug=category_slug)
@@ -33,7 +33,21 @@ def store(request, category_slug=None):
             start = max(num_pages - 4,1)
         page_range = range(start,end+1)
         count = products.count()
-    else:      
+        
+        #esto es para filtrar por orden pero no esta optimizado
+        if form.is_valid():
+            order_by = form.cleaned_data.get('order_by')
+            
+            if order_by == 'asc':
+                page_x_products = products.order_by('product_name')
+            elif order_by == 'desc':
+                page_x_products = products.order_by('-product_name')
+            elif order_by == 'min':
+                page_x_products = products.order_by('price')
+            elif order_by == 'max':
+                page_x_products = products.order_by('-price')
+        
+    else:   
         products = Products.objects.all().filter(is_available=True).order_by('product_name')#aqui tambien podria ser por id
         pagination = Paginator(products,12)
         page = request.GET.get('page',1)
@@ -47,12 +61,25 @@ def store(request, category_slug=None):
             start = max(num_pages - 4,1)
         page_range = range(start,end+1)
         count = products.count()
+        #esto es para filtrar por orden pero no esta optimizado
+        if form.is_valid():
+            order_by = form.cleaned_data.get('order_by')
+            
+            if order_by == 'asc':
+                page_x_products = products.order_by('product_name')
+            elif order_by == 'desc':
+                page_x_products = products.order_by('-product_name')
+            elif order_by == 'min':
+                page_x_products = products.order_by('price')
+            elif order_by == 'max':
+                page_x_products = products.order_by('-price')
         
     context = {
         'products':page_x_products,
         'page_range':page_range,
         'count':count,
-        'categorys':categorys
+        'categorys':categorys,
+        'form':form
     }
     
     return render(request,"tienda/tienda.html",context)
