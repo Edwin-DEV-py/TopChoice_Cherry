@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 #from django.contrib.messages import constants as messages
 
 
@@ -23,9 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-(7hd6l1kj(c6g%q*p2&exo+cs#gxo^aa-6uw+r-!@!@sbog#-$'
+#SECRET_KEY = config('SECRET_KEY') para seguridad
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = config('DEBUG', cast=bool) para seguridad
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.0.102','topchoice']
 
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     'Carrito',
     'Ordenes_compra',
     'django.core.mail',
+    'decouple'
 ]
 
 
@@ -151,6 +155,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
 
 #verificcion de email
+##opcion para seguridad
+#EMAIL_BACKEND = config('EMAIL_BACKEND')
+#EMAIL_HOST = config('EMAIL_HOST')
+#EMAIL_PORT = config('EMAIL_PORT',cast=int)
+#EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+#EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+#EMAIL_USE_TLS = config('EMAIL_USE_TLS',cast=bool)
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

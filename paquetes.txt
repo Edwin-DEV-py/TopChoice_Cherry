@@ -4,6 +4,8 @@ conda install django
 pip install pillow
 pip install django-widget-tweaks
 pip install mysqlclient
+pip install xlmt
+pip install python-decouple
 ------------------------------------------------------------------------------------------------------------------------
 
 
