@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from Categorias.models import Category, SubCategory
 from Productos.models import Products
+import os
+from django.http import FileResponse
+from django.conf import settings
 
 #vista para la pagina principal
 def header(request):
@@ -24,4 +27,8 @@ def inicio_sesion(request):
 
 def registro(request):
     return render(request,'registro.html')
+
+def terms_conditions(request):
+    file = os.path.join(settings.MEDIA_ROOT, 'tc.pdf')
+    return FileResponse(open(file,'rb'),as_attachment=True)
 

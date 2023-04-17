@@ -25,7 +25,8 @@ urlpatterns = [
     path('store/',include('Productos.urls')),
     path('shopping_cart/',include('Carrito.urls')),
     path('user/',include('Usuario.urls')),
-    path('orders/',include('Ordenes_compra.urls'))
+    path('orders/',include('Ordenes_compra.urls')),
+    path('terms_conditions',views.terms_conditions,name='terms_conditions')
     #aqui colocar la etiqueta include para usar las urls de las otras apps.
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
