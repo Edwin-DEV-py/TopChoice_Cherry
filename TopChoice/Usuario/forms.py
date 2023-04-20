@@ -78,3 +78,4 @@ class EditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['name','phonenumber','addres','img']
+        

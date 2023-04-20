@@ -321,3 +321,4 @@ def re_add(request,product_id):
         )
         return redirect('shopping_cart')
     return redirect('shopping_cart')
+
