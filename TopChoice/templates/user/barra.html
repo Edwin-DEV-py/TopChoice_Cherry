@@ -6,7 +6,6 @@
         <div class="navbar-nav">
             <a class="nav-link {% if '/profile/' in request.path %} activo {% endif %}" href="{% url 'profile' %}">Mi perfil</a>
             <a class="nav-link {% if '/my_orders/' in request.path %} activo {% endif %}" href="{% url 'my_orders' %}">Mis ordenes</a>
-            <a class="nav-link" href="#">Mis facturas</a>
             <a class="nav-link {% if '/my_products/' in request.path %} activo {% endif %}" href="{% url 'my_products' %}">Productos pedidos</a>
         </div>
     </div>

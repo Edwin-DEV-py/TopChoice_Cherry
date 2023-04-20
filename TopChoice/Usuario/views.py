@@ -296,12 +296,13 @@ def my_orders(request):
 
 #mostrar lista de todos los productos comprados
 def products_shop(request):
-    products = Product_order.objects.all()
+    products = Product_order.objects.filter(user=request.user)
     context = {
         'products':products
     }
     
     return render(request, 'user/productos.html',context)
+
 
 #agregar productos para volverlos a comprar
 @login_required(login_url='login')
