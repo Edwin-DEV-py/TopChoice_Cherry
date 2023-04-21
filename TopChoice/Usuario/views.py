@@ -322,3 +322,10 @@ def re_add(request,product_id):
         return redirect('shopping_cart')
     return redirect('shopping_cart')
 
+def contact(request):
+    formC = ContactForm()
+    context = {
+        'formC':formC
+    }
+    return render(request,'index.html',context)
+

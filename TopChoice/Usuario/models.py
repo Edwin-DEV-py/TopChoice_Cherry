@@ -96,5 +96,13 @@ class Profile(models.Model):
         return f'{self.city} {self.address_1} {self.address_2}'
     
     
+class Contact(models.Model):
+    email = models.EmailField(max_length=200)
+    comment = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.email
+    
+    
     
     

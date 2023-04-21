@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User,Contact
 from django.core.exceptions import ValidationError
 
 class RegisterForm(forms.ModelForm):
@@ -78,4 +78,9 @@ class EditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['name','phonenumber','addres','img']
+        
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = '__all__'
         
