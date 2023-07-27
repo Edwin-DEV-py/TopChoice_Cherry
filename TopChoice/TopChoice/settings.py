@@ -97,7 +97,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'topchoice',
         'USER': 'admin',
-        'PASSWORD': 'admin123',
+        'PASSWORD': '#######',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -166,8 +166,8 @@ MEDIA_ROOT = BASE_DIR /'media'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'TopchoiceCherry@gmail.com'#Topchoice0000
-EMAIL_HOST_PASSWORD = 'mspojcfscgdwgemi'
+EMAIL_HOST_USER = '######'
+EMAIL_HOST_PASSWORD = '######'
 EMAIL_USE_TLS = True
 
 # Default primary key field type
